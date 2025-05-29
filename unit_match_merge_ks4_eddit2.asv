@@ -1,0 +1,154 @@
+%% Unitmatch DT implementation
+addpath(genpath('~/si_lab'))
+%base_folder = '/home/saleem_lab/spikeinterface_sorting/temp_data/';
+
+%% get the path to the kilosort directory
+
+%Define variables
+mouse='M24019' %mouse id
+save_date='20240719' %date of recording
+date = save_date;
+dates='20240719/20240719_0,20240719/20240719_2' %acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
+base_folder='/home/lab/spikeinterface_sorting/temp_data/'  % Adjust this path if necessary
+
+no_probe='1' %number of probes you have in this session
+% use_ks4=true %use kilosort4
+% use_ks3=false %use kilosort3
+
+ephys_folder = [base_folder,mouse,'/', date,'/SpikeSorting/'];
+parent_folder = [base_folder,mouse,'/', date,'/'];
+
+
+for no_probe = 1:str2double(noprobe)
+    ephys_folder = fullfile(base_folder,date);
+
+    UMparam.KSDir = {fullfile(ephys_folder,['probe',num2str(no_probe)-1],'sorters','kilosort4','sorter_output')};  % This is a cell array with a path, in the path there should be a subfolder called 'RawWaveforms'.
+    % N.B. if you want to use the functional score evaluation of UnitMatch, 'KSDir' should also contain typical 'Kilosort output', (e.g. spike times etc.)
+    %         UMparam.KSDir = {fullfile('Z:\ibn-vision\DATA\SUBJECTS\M23028\ephys\20230703\kilosort_probe_',num2str(no_probe))};
+    UMparam.SaveDir = fullfile(UMparam.KSDir{1},'UnitMatch');
+    mkdir(UMparam.SaveDir);
+    clusinfo = struct; % Note, this can be kilosort input,
+    clusinfo.cluster_id = [];
+    clusinfo.Good_ID = [];
+    clusinfo.ProbeID = [];
+    clusinfo.RecSesID=[];
+
+
+
+
+    %UMparam.SaveDir = fullfile(ephys_folder{iDate},['probe',num2str(no_probe)-1],'unit_match'); % Recommended to use end this path with \Probe0\IMRO_1\ if more probes/IMRO tables were used or \AllProbes\AllIMRO\ otherwise
+
+
+    %% N.B. the following user input can also be automatically extracted and prepared/cleaned up using UMparam = ExtractKilosortData(KiloSortPaths, UMparam) for Kilosorted data of SpikeGLX recorded data (see next section);
+    %UMparam.RawDataPaths = {'\\path\to\firstrecording','\\path\to\secondrecording','\\path\to\nthrecording'};  % This is a cell array with info on where to find the compressed recording (.cbin files OR .bin files)
+    UMparam.AllRawPaths ={fullfile(ephys_folder,['probe',num2str(no_probe)-1,'preprocessed'])};
+    UMparam.AllDecompPaths= {fullfile(ephys_folder,['probe',num2str(no_probe)-1,'preprocessed'])};  % This is a cell array with info on where to find the decompressed recording (.bin files) --> Necessary when you want UnitMatch to do waveform extraction
+
+    UMparam.AllChannelPos = {readNPY(fullfile(ephys_folder,['probe',num2str(no_probe)-1],'sorters','kilosort4','sorter_output','channel_positions.npy'))}; % These are coordinates of every recording channel on the probe (e.g. nRecordingChannels x 2)
+    %         UMparam.AllChannelPos = {readNPY(fullfile(ephys_folder,['kilosort_probe_',num2str(no_probe)-1],'channel_positions.npy'))};
+
+    %% convert spikeinterface waveforms to unit match version in kilosort folder
+
+    % Specify the file path
+    ks_random_spikes = fullfile(ephys_folder,['probe',num2str(no_probe)-1],'waveform','kilosort4','extensions','random_spikes','random_spikes_indices.npy');
+    ks_waveform_path = fullfile(ephys_folder,['probe',num2str(no_probe)-1],'waveform','kilosort4','extensions','waveforms','waveforms.npy');
+    ks_spikes_path = fullfile(ephys_folder,['probe',num2str(no_probe)-1],'sorters','kilosort4','in_container_sorting','spikes.csv');
+    ks_sparsity_path = fullfile(ephys_folder,['probe',num2str(no_probe)-1],'waveform','kilosort4','sparsity_mask.npy');
+    ks_sparsity = readNPY(ks_sparsity_path);
+    ks_raw_waveform_path =fullfile(UMparam.KSDir,'RawWaveforms');
+    mkdir(ks_raw_waveform_path{1});
+    random_spikes = readNPY(ks_random_spikes);
+    waveforms = readNPY(ks_waveform_path);
+    spikes = readmatrix(ks_spikes_path);
+    random_spike_ids = spikes(random_spikes+1,1);
+    unit_ids = unique(spikes(:,1));
+    no_channels = size(ks_sparsity,2);
+    for iUnit = 1:length(unit_ids)
+        waveform_channel_ids = ks_sparsity(iUnit,:);
+        % Assume 'cellArray' is your cell array
+        unit_random_spikes = random_spike_ids == unit_ids(iUnit);
+        unit_waveform = waveforms(unit_random_spikes,:,:);
+        unit_waveform = permute(unit_waveform,[2 3 1]);
+        spikeMap = zeros(size(unit_waveform,1),no_channels,size(unit_waveform,3));
+
+        spikeMap(:,waveform_channel_ids,:) = unit_waveform(:,1:sum(waveform_channel_ids),:);
+        spikeMapAvg = zeros(size(unit_waveform,1),no_channels,2);
+        nwavs = size(spikeMap,3);
+        for cv = 1:2
+            if cv==1
+                wavidx = floor(1:nwavs/2);
+            else
+                wavidx = floor(nwavs/2+1:nwavs);
+            end
+            spikeMapAvg(:,:,cv) = nanmedian(spikeMap(:,:,wavidx),3);
+        end
+        spikeMap = spikeMapAvg;
+
+        %fetch the waveforms of the unit
+        writeNPY(spikeMap, fullfile(UMparam.KSDir{1},'RawWaveforms',['Unit',num2str(unit_ids(iUnit)),'_RawSpikes.npy']));
+    end
+
+
+
+    clusinfo.cluster_id = unit_ids;
+    clusinfo.Good_ID = zeros(size(unit_ids));
+    clusinfo.ProbeID = ones(size(unit_ids)).*no_probe;
+    clusinfo.RecSesID = ones(size(unit_ids));
+    UMparam = DefaultParametersUnitMatch(UMparam);
+    UMparam.GoodUnitsOnly = 0;
+    UMparam.spikeWidth = size(spikeMap,1);
+    % Params = struct;
+    % Params = DefaultParametersExtractKSData(Params,UMparam.KSDir{1});
+    % Params.DecompressLocal = 0; Params.RunQualityMetrics = 0;
+    %         ExtractKilosortData(UMparam.KSDir, Params)
+    % sp = loadKSdir(fullfile(UMparam.KSDir{1}), Params); % Load Spikes with PCs
+    %     [sp.spikeAmps, sp.spikeDepths, sp.templateDepths, sp.templateXpos, sp.tempAmps, sp.tempsUnW, sp.templateDuration, sp.waveforms] = ...
+    %         templatePositionsAmplitudes(sp.temps, sp.winv, sp.ycoords, sp.xcoords, sp.spikeTemplates, sp.tempScalingAmps);
+    %     save(fullfile(UMparam.KSDir{1}, 'PreparedData.mat'), 'clusinfo', 'Params', '-v7.3')
+    %     save(fullfile(UMparam.KSDir{1}, 'PreparedData.mat'), 'sp', '-append')
+    %%
+    [UniqueIDConversion, MatchTable, WaveformInfo, UMparam] = UnitMatch(clusinfo, UMparam);
+    if UMparam.AssignUniqueID
+        AssignUniqueID(UMparam.SaveDir);
+    end
+    MatchTable.ID1 = MatchTable.ID1+1;
+    MatchTable.ID2 = MatchTable.ID2+1;
+    unit_id = unique(MatchTable.ID1);
+    MatchProb = reshape(MatchTable.MatchProb,[length(unit_id) length(unit_id)]);
+    upperTri = triu(MatchProb, 1);
+    lowerTri = tril(MatchProb, -1);
+    a= lowerTri';
+    avgMatrix = (upperTri + lowerTri') / 2;
+    self_match_prob = spdiags(MatchProb,0);
+    unstable_id = self_match_prob < 0.5;
+    merged_id = unit_id; %pre-allocate the unit id to the merged id
+    channel_map = readNPY(fullfile(UMparam.KSDir{1},'channel_map.npy'));
+    channel_positions = readNPY(fullfile(UMparam.KSDir{1},'channel_positions.npy'));
+    avg_channel = WaveformInfo.MaxChannel(:,2); %max channel in waveforminfo is finding the max index of the waveform so it's a direct index, not channel id
+    avg_channel_no_nan = ~isnan(avg_channel);
+    unit_peak_depths = nan(size(avg_channel));
+    unit_peak_depths(avg_channel_no_nan) = channel_positions(avg_channel(avg_channel_no_nan),2);
+    for id_count = 1:length(unit_id)
+        id = unit_id(id_count);
+
+        match_id = avgMatrix(id_count,:) >= 0.9;
+        if ~isnan(unit_peak_depths(id_count))
+            nearby_id = unit_peak_depths <= unit_peak_depths(id_count)+150 & unit_peak_depths>= unit_peak_depths(id_count) -150;
+        else
+            nearby_id = false(size(unit_peak_depths));
+        end
+
+        if sum(match_id) > 0
+            if merged_id(id_count) == id
+                merged_id(match_id' & nearby_id) = id;
+            else
+                merged_id(match_id' & nearby_id) = merged_id(id_count);
+            end
+        end
+
+    end
+    original_id = unit_id;
+    savepath = fullfile(base_folder,date,['probe',num2str(no_probe)-1,'um_merge_suggestion_ks4.mat']);
+    match_ids =[original_id,merged_id,unstable_id];
+    save(savepath,'match_ids');
+end
