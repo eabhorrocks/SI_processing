@@ -6,10 +6,13 @@ set -e # exit on error
 mouse='M24019' #mouse id
 save_date='20240719' #date of recording
 dates='20240719/20240719_0,20240719/20240719_2' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
-base_folder='/home/lab/spikeinterface_sorting/temp_data/'  # Adjust this path if necessary
-server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/' # path to SUBJECTS dir on server
-pathToCatGTRunit='/home/lab/CatGT-linux/runit.sh'
-pathToTPrimeRunit='/home/lab/TPrime-linux/runit.sh'
+base_folder='/home/lab/spikeinterface_sorting/temp_data/'  
+# beast: '/home/lab/spikeinterface_sorting/temp_data/' GZ: 'home/saleem_lab/spikeinterface_sorting/temp_data/
+server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/' # should be same on both: '/mnt/rds01/ibn-vision/DATA/SUBJECTS/' GZ: 
+pathToCatGTRunit='/home/lab/CatGT-linux/runit.sh' 
+# beast: '/home/lab/CatGT-linux/runit.sh', GZ: /home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh
+pathToTPrimeRunit='/home/lab/TPrime-linux/runit.sh' 
+# beast: '/home/lab/TPrime-linux/runit.sh',  GZ: /home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh
 
 no_probe=1 #number of probes you have in this session
 use_ks4=true #use kilosort4
