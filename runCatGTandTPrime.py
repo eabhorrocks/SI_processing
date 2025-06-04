@@ -174,7 +174,7 @@ nidq_output_path =save_folder + '/' + save_date + '/nidq_processed/'
 if os.path.exists(nidq_output_path)==False:
     os.makedirs(nidq_output_path)
 
-lfp_output_path=save_folder + '/' + save_date + 'lfp/'
+lfp_output_path=save_folder + '/' + save_date + '/lfp/'
 
 if os.path.exists(lfp_output_path)==False:
     os.makedirs(lfp_output_path)

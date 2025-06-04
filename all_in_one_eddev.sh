@@ -29,8 +29,8 @@ python runSpikeSorting.py $mouse $dates $save_date $base_folder $no_probe $use_k
 
 #matlab -nosplash -nodisplay -nodesktop -r "mouse='${mouse}'; date='${save_date}'; base_folder='${base_folder}';no_probe='${no_probe}';dates='${dates}'; run('unit_match_merge_ks4_eddit2.m'); exit;"
 
-python mergeAndCalculateQualityMetrics.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
+#python mergeAndCalculateQualityMetrics.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
 
-python uploadToServer.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
+#python uploadToServer.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder
 
 
