@@ -11,13 +11,6 @@ startTime = datetime.now()
 print('Running runCatGTandTPrime.py...')
 print('Start Time:' + startTime.strftime("%m/%d/%Y, %H:%M:%S"))
 
-# The first command-line argument after the script name is the mouse identifier.
-#mouse='M24019' #mouse id
-#save_date='20240716' #date of recording
-#dates='20240716/20240716_0,20240716/20240716_2' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
-#base_folder='/home/lab/spikeinterface_sorting/temp_data/'  # Adjust this path if necessary
-#local_folder = base_folder
-#no_probe=1 #number of probes you have in this session
 
 # The first command-line argument after the script name is the mouse identifier.
 mouse = sys.argv[1]
@@ -31,15 +24,17 @@ print('Mouse: ',mouse)
 print('Acquisition folders: ',dates)
 #use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 #use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
-base_folder = '/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
+pathToCatGTRunit = sys.argv[9]
+pathToTPrimeRunit = sys.argv[10]
+#pathToCatGTRunit = '/home/lab/CatGT-linux/runit.sh'
+#pathToTPrimeRunit = '/home/lab/TPrime-linux/runit.sh'
+
 
 save_folder = local_folder+ mouse +"/"
 print('Local save folder: ',save_folder)
 print(' ')
 
 date_count = 0
-pathToCatGTRunit = '/home/lab/CatGT-linux/runit.sh'
-pathToTPrimeRunit = '/home/lab/TPrime-linux/runit.sh'
 
 def sorting_key(s):
     return int(s.split('_g')[-1])
@@ -51,7 +46,7 @@ else:
 
 catGTcommands = []
 
-for date in dates:
+for date in dates: # actually acquisitions, rather than dates
     print('Current acquisiton folder:', date)
     date_count = date_count + 1
     ephys_folder = save_folder + date
@@ -86,10 +81,7 @@ for date in dates:
              + '-dir=' + ephys_folder + ' -run=' + runName  \
              + ' -g=' + str(firstg) + ',' + str(lastg) + ' -t=0' + ' -t_miss_ok' + ' -zerofillmax=50' \
              + ' -prb_fld' + ' -out_prb_fld' + ' -ap' + ' -ni' + ' -prb=' + catGTprobeStr + ' -prb_miss_ok' \
-             + ' -xa=0,0,0,1,1,500 -xa=0,0,1,0.2,0.2,0, -xia=0,0,1,0.2,0.2,0 -xa=0,0,2,1,1,0' \
-             + ' -xia=0,0,2,4,4,0 -xa=0,0,3,1,1,0 -xia=0,0,3,4,4,0' \
-             + ' -xia=0,0,4,4,4,0 -xia=0,0,5,4,4,0 -xa=0,0,6,1,1,0 -xa=0,0,7,1,1,0' \
-             + ' -xia=0,0,6,4,4,0 -xia=0,0,7,4,4,0' \
+             + ' -lf -lffilter=butter,12,0,500' \
              + ' -dest=' + ephys_folder + "'"
 
     catGTcommands.append(cmdStr)
@@ -101,9 +93,9 @@ print('CatGT OS commands:')
 for cmd in catGTcommands:
     print(cmd)
 
-#procs = [Popen(shlex.split(i)) for i in catGTcommands]
-#for p in procs:
-#    p.wait()
+procs = [Popen(shlex.split(i)) for i in catGTcommands]
+for p in procs:
+    p.wait()
 print('CatGT finished! Time taken: ', datetime.now() - catgt_start_time)
 print(' ')
 
@@ -139,9 +131,7 @@ if nAcq > 1:  # we also want to run supercat
         runName = mouse + '_' + runName[1]
         cmdStr = cmdStr + '{' + ephys_folder + ',' + 'catgt_' + runName + '_g' + str(firstg) + '}'
 
-    cmdStr = cmdStr +  ' -prb_fld -ap -ni' + ' -prb=' + catGTprobeStr + ' -prb_miss_ok -supercat_trim_edges' \
-             + ' -xa=0,0,0,1,1,500 -xa=0,0,1,0.2,0.2,0, -xia=0,0,1,0.2,0.2,0 -xa=0,0,2,1,1,0 -xia=0,0,2,4,4,0 -xa=0,0,3,1,1,0 -xia=0,0,3,4,4,0' \
-             + ' -xia=0,0,4,4,4,0 -xia=0,0,5,4,4,0 -xa=0,0,6,1,1,0 -xa=0,0,7,1,1,0 -xia=0,0,6,4,4,0 -xia=0,0,7,4,4,0' \
+    cmdStr = cmdStr +  ' -prb_fld -ap -ni -lf' + ' -prb=' + catGTprobeStr + ' -prb_miss_ok -supercat_trim_edges' \
              + ' -dest=' + save_folder + save_date +'/'+"'"
 
     # run supercat
@@ -150,9 +140,9 @@ if nAcq > 1:  # we also want to run supercat
     supercatCommands =[]
     supercatCommands.append(cmdStr)
     supercat_start_time = datetime.now()
-    #procs = [Popen(shlex.split(i)) for i in supercatCommands]
-    #for p in procs:
-    #    p.wait()
+    procs = [Popen(shlex.split(i)) for i in supercatCommands]
+    for p in procs:
+        p.wait()
     print('Supercat finished! Time taken: ', datetime.now() - supercat_start_time)
 
     # get diretory of final concatenated file
@@ -184,6 +174,17 @@ nidq_output_path =save_folder + '/' + save_date + '/nidq_processed/'
 if os.path.exists(nidq_output_path)==False:
     os.makedirs(nidq_output_path)
 
+lfp_output_path=save_folder + '/' + save_date + 'lfp/'
+
+if os.path.exists(lfp_output_path)==False:
+    os.makedirs(lfp_output_path)
+
+for filename in os.listdir(catGTDir):
+    if filename.endswith('lf.bin') or filename.endswith('lf.meta'):
+        source_path = os.path.join(catGTDir, filename)
+        destination_path = os.path.join(lfp_output_path, filename)
+        shutil.move(source_path, destination_path)
+
 print(' ')
 print("Running TPrime...")
 cmdStr = pathToTPrimeRunit + " '" \
@@ -192,40 +193,14 @@ cmdStr = pathToTPrimeRunit + " '" \
         + ' -fromstream=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xd_8_3_500.txt' \
         + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xd_8_3_500.txt'\
         + ',' + nidq_output_path + 'nidq_sync_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xa_0_500.txt'\
-        + ',' + nidq_output_path  + 'async_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xa_1_0.txt'\
-        + ',' + nidq_output_path  + 'photodiode_up_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_1_0.txt'\
-        + ',' + nidq_output_path  + 'photodiode_down_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xa_2_0.txt'\
-        + ',' + nidq_output_path  + 'wheel_a_up_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xa_3_0.txt'\
-        + ',' + nidq_output_path  + 'wheel_b_up_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_2_0.txt'\
-        + ',' + nidq_output_path  + 'wheel_a_down_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_3_0.txt'\
-        + ',' + nidq_output_path  + 'wheel_b_down_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xa_6_0.txt'\
-        + ',' + nidq_output_path  + 'valveL_open_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xa_7_0.txt'\
-        + ',' + nidq_output_path  + 'valveR_open_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_6_0.txt'\
-        + ',' + nidq_output_path  + 'valveL_close_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_7_0.txt'\
-        + ',' + nidq_output_path  + 'valveR_close_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_4_0.txt'\
-        + ',' + nidq_output_path  + 'lickL_tprime.txt' \
-        + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xia_5_0.txt'\
-        + ',' + nidq_output_path +  'lickR_tprime.txt' \
         +  "'"
 
 
 TPrimeCommands.append(cmdStr)
 tprime_start_time = datetime.now()
-#procs = [Popen(shlex.split(i)) for i in TPrimeCommands]
-#for p in procs:
-#    p.wait()
+procs = [Popen(shlex.split(i)) for i in TPrimeCommands]
+for p in procs:
+    p.wait()
 print("TPrime finshed! Time taken: ", datetime.now() - tprime_start_time)
 print(' ')
 
