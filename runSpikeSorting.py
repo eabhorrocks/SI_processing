@@ -21,6 +21,8 @@ import spikeinterface.curation
 import spikeinterface.widgets
 import docker
 import itertools
+from spikeinterface.exporters import export_report
+
 
 import scipy.io as sio
 
@@ -33,8 +35,6 @@ print(datetime.now()-startTime)
 subprocess.run('ulimit -n 4096', shell=True)
 
 import pandas as pd
-
-
 def save_spikes_to_csv(spikes, save_folder):
     unit_index = spikes['unit_index']
     segment_index = spikes['segment_index']
@@ -68,13 +68,15 @@ print(mouse)
 print('acquisition folder: ', dates)
 use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
-base_folder = '/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
 
 temp_save_folder = local_folder + mouse + "/"
 
 # get the output folder of CatGT for SI to read
 parent_dir = temp_save_folder + save_date + '/'
 save_folder = temp_save_folder + save_date +'/SpikeSorting/'
+
+extensions = ['templates', 'template_metrics', 'noise_levels', 'template_similarity', 'correlograms', 'isi_histograms']
+job_kwargs = dict(n_jobs=32, chunk_duration='1s', progress_bar=True)
 
 for probe in range(int(no_probe)):
 
@@ -99,34 +101,60 @@ for probe in range(int(no_probe)):
         probe_sorting_ks4 = si.remove_duplicated_spikes(sorting=probe_sorting_ks4, censored_period_ms=0.3,
                                                          method='keep_first')
 
+        # quality metrics and waveforms
         probe_we_ks4 = si.create_sorting_analyzer(probe_sorting_ks4, probe_processed,
                                                    format='binary_folder',
-                                                   folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/waveform/',
+                                                   folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/metrics/',
                                                    sparse=True, overwrite=True,
                                                    **job_kwargs)
         probe_we_ks4.compute('random_spikes')
         probe_we_ks4.compute('waveforms', ms_before=1.0, ms_after=2.0, **job_kwargs)
+        probe_we_ks4.compute(extensions, **job_kwargs)
+        probe_we_ks4.compute('principal_components', **job_kwargs)
+        probe_we_ks4.compute('spike_amplitudes', **job_kwargs)
+        qm_list = si.get_default_qm_params()
+        print('The following quality metrics are being computed:')
+        print(qm_list)
+        probe_we_ks4.compute('quality_metrics', qm_params=qm_list,**job_kwargs)
+        export_report(sorting_analyzer=probe_we_ks4, output_folder=save_folder +'probe'+str(probe)+'/sorters/kilosort4/report/')
+
         probe_ks4_spikes = np.load(
-            save_folder + 'probe' + str(probe) + '/sorters/kilosort4/waveform/sorting/spikes.npy')
+            save_folder + 'probe' + str(probe) + '/sorters/kilosort4/metrics/sorting/spikes.npy')
         save_spikes_to_csv(probe_ks4_spikes,
             save_folder + 'probe' + str(probe) + '/sorters/kilosort4/')
+
     if use_ks3:
+        ks3params = si.get_default_sorter_params(sorter_name_or_class='kilosort3')
+        ks3params['do_CAR'] = False
+
         print('Running kilosort 3 on probe ', probe)
         probe_sorting_ks3 = si.run_sorter(sorter_name= 'kilosort3',recording=probe_processed,
                                            folder=save_folder+'probe'+str(probe)+'/sorters/kilosort3/',
                                            docker_image='spikeinterface/kilosort3-compiled-base:latest')
+
         probe_sorting_ks3 = si.remove_duplicated_spikes(sorting=probe_sorting_ks3, censored_period_ms=0.3,
                                                          method='keep_first')
+
         probe_we_ks3 = si.create_sorting_analyzer(probe_sorting_ks3, probe_processed,
                                                    format='binary_folder',
-                                                   folder=save_folder + 'probe' + str(probe) + '/waveform/kilosort3',
+                                                   folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort3/metrics/',
                                                    sparse=True, overwrite=True,
                                                    **job_kwargs)
         probe_we_ks3.compute('random_spikes')
         probe_we_ks3.compute('waveforms', ms_before=1.0, ms_after=2.0, **job_kwargs)
+        probe_we_ks3.compute(extensions, **job_kwargs)
+        probe_we_ks3.compute('principal_components', **job_kwargs)
+        probe_we_ks3.compute('spike_amplitudes', **job_kwargs)
+        qm_list = si.get_default_qm_params()
+        print('The following quality metrics are being computed:')
+        print(qm_list)
+        probe_we_ks3.compute('quality_metrics', qm_params=qm_list, **job_kwargs)
+        export_report(sorting_analyzer=probe_we_ks3,
+                      output_folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort3/report/')
+
         probe_ks3_spikes = np.load(
-            save_folder + 'probe' + str(probe) + '/sorters/kilosort3/in_container_sorting/spikes.npy')
+            save_folder + 'probe' + str(probe) + '/sorters/kilosort3/metrics/sorting/spikes.npy')
         save_spikes_to_csv(probe_ks3_spikes,
-                           save_folder + 'probe' + str(probe) + '/sorters/kilosort3/in_container_sorting/')
+                           save_folder + 'probe' + str(probe) + '/sorters/kilosort3/')
 
 sys.exit(0)

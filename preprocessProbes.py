@@ -25,8 +25,6 @@ import pandas as pd
 print("import time: ", datetime.now()-startTime)
 
 
-
-
 # grab recordings from the server to local machine (Beast)
 
 job_kwargs = dict(n_jobs=32, chunk_duration='1s', progress_bar=True)
@@ -50,7 +48,6 @@ local_folder = sys.argv[4]
 no_probe = sys.argv[5]
 use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
-base_folder = '/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
 
 save_folder = local_folder + mouse + "/"
 
