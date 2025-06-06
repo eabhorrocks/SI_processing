@@ -95,8 +95,7 @@ for probe in range(int(no_probe)):
 
         print('Running kilosort 4 on probe ', probe)
         probe_sorting_ks4 = si.run_sorter(sorter_name='kilosort4', recording=probe_processed,
-                                           folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/',
-                                           docker_image='spikeinterface/kilosort4-base:latest')
+                                           folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/')
 
         probe_sorting_ks4 = si.remove_duplicated_spikes(sorting=probe_sorting_ks4, censored_period_ms=0.3,
                                                          method='keep_first')

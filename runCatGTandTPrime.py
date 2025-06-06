@@ -208,7 +208,7 @@ print(' ')
 print("Moving the following nidq files: ")
 nidq_files_to_move = []
 for dirpath, dirnames, filenames in os.walk(save_folder + save_date):
-    for filename in [f for f in filenames if f.endswith("_offsets.txt")]:
+    for filename in [f for f in filenames if f.endswith(".txt")]:
         nidq_files_to_move.append(os.path.join(dirpath, filename))
         print(os.path.join(dirpath, filename))
 

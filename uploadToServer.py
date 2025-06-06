@@ -40,8 +40,8 @@ lfpDir = save_folder2 + '/lfp/'
 spikeSortingDir = save_folder2 + '/SpikeSorting/'
 
 # get the output folder of CatGT for SI to read
-parent_dir = temp_save_folder + save_date + '/'
-save_folder = temp_save_folder + save_date +'/SpikeSorting/'
+parent_dir = save_folder + save_date + '/'
+save_folder = save_folder + save_date +'/SpikeSorting/'
 
 print('Copying files to server...')
 print('server destination: ', destDir)
@@ -49,15 +49,16 @@ print('Copying nidq files to ', destDir+'/nidq_processed/')
 copytree(nidqDir, destDir+'/nidq_processed/')
 print('Copying lfp files to ', destDir+'/lfp/')
 copytree(lfpDir, destDir+'/lfp/')
+print('Copying spike sorting files to ', destDir+'/spike_sorting/')
+copytree(spikeSortingDir, destDir+'/spike_sorting/', ignore=ignore_patterns('*bin', '*.raw', '*.dat'))
 
-
-print('Copying spike-sorting files to ', destDir+'/spike_sorting/')
-
+print('Copying pre-processed probe data')
 for probe in range(int(no_probe)): 
-    folders_to_move = ['probe'+str(probe), 'probe'+str(probe)+'_preprocessed']
-
+    folders_to_move = ['probe'+str(probe)+'_preprocessed']
     for folder in folders_to_move:
-            copytree(save_folder2 + folder, destDir+'/spike_sorting/' + folder, ignore=ignore_patterns('*bin', '*.raw', '*.dat'))
+            copytree(save_folder2 + '/' + folder, destDir+'/' + folder, ignore=ignore_patterns('*bin', '*.raw', '*.dat'))
+            
+            
 
 
 print('All Done! Overall it took:')

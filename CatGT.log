@@ -20,3 +20,24 @@
 [Thd 140162369861440 CPU 0 8/19/24 15:06:08.839] 
 [Thd 140092574611264 CPU 0 8/19/24 15:06:09.271] Cmdline: CatGT -t=cat -prb_fld -prb_miss_ok -ni -ap -prb=0 -xa=0,0,0,1,1,500 -xa=0,0,1,0.2,0.2,0 -xia=0,0,1,0.2,0.2,0 -xa=0,0,2,1,1,0 -xia=0,0,2,4,4,0 -xa=0,0,3,1,1,0 -xia=0,0,3,4,4,0 -xia=0,0,4,4,4,0 -xia=0,0,5,4,4,0 -xa=0,0,6,1,1,0 -xa=0,0,7,1,1,0 -xia=0,0,6,4,4,0 -xia=0,0,7,4,4,0 -supercat={/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_0,catgt_M24019_20240719_0_g0}{/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2,catgt_M24019_20240719_2_g0} -supercat_trim_edges -dest=/home/lab/spikeinterface_sorting/temp_data/M24019/20240719
 [Thd 140092574611264 CPU 0 8/19/24 15:58:20.492] 
+[Thd 139662383675200 CPU 0 6/04/25 14:07:02.903] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/SI_processing/temp_data/M25065/20250528/20250528_0 -run=M25065_20250528_0 -g=0,6 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/SI_processing/temp_data/M25065/20250528/20250528_0 -out_prb_fld
+[Thd 139662383675200 CPU 0 6/04/25 14:07:02.946] Creating lf stream for probe 0.
+[Thd 139662383675200 CPU 0 6/04/25 14:07:08.895] Gap before file 'M25065_20250528_0_g1_t0.nidq.bin' out_start_smp=39950041 inp_gap_smp=361713 out_zeros_smp=529.
+[Thd 139662383675200 CPU 0 6/04/25 14:07:09.734] Gap before file 'M25065_20250528_0_g2_t0.nidq.bin' out_start_smp=45531795 inp_gap_smp=875796 out_zeros_smp=529.
+[Thd 139662383675200 CPU 0 6/04/25 14:07:09.746] Gap before file 'M25065_20250528_0_g3_t0.nidq.bin' out_start_smp=46355584 inp_gap_smp=263294 out_zeros_smp=529.
+[Thd 139662383675200 CPU 0 6/04/25 14:07:10.323] Gap before file 'M25065_20250528_0_g4_t0.nidq.bin' out_start_smp=90002731 inp_gap_smp=1364010 out_zeros_smp=529.
+[Thd 139662383675200 CPU 0 6/04/25 14:07:10.368] Gap before file 'M25065_20250528_0_g5_t0.nidq.bin' out_start_smp=93308961 inp_gap_smp=224338 out_zeros_smp=529.
+[Thd 139662383675200 CPU 0 6/04/25 14:07:13.724] Gap before file 'M25065_20250528_0_g6_t0.nidq.bin' out_start_smp=131279106 inp_gap_smp=320181 out_zeros_smp=529.
+[Thd 139662383675200 CPU 0 6/04/25 14:34:18.396] Gap before file 'M25065_20250528_0_g1_t0.imec0.ap.bin' out_start_smp=113138256 inp_gap_smp=1023470 out_zeros_smp=1500.
+[Thd 139662383675200 CPU 0 6/04/25 14:38:35.235] Gap before file 'M25065_20250528_0_g2_t0.imec0.ap.bin' out_start_smp=128945750 inp_gap_smp=2480096 out_zeros_smp=1500.
+[Thd 139662383675200 CPU 0 6/04/25 14:39:08.302] Gap before file 'M25065_20250528_0_g3_t0.imec0.ap.bin' out_start_smp=131278716 inp_gap_smp=745622 out_zeros_smp=1500.
+[Thd 139662383675200 CPU 0 6/04/25 15:09:46.066] Gap before file 'M25065_20250528_0_g4_t0.imec0.ap.bin' out_start_smp=254887153 inp_gap_smp=3861856 out_zeros_smp=1500.
+[Thd 139662383675200 CPU 0 6/04/25 15:11:59.336] Gap before file 'M25065_20250528_0_g5_t0.imec0.ap.bin' out_start_smp=264250376 inp_gap_smp=635247 out_zeros_smp=1500.
+[Thd 139662383675200 CPU 0 6/04/25 15:38:18.531] Gap before file 'M25065_20250528_0_g6_t0.imec0.ap.bin' out_start_smp=371781582 inp_gap_smp=905875 out_zeros_smp=1500.
+[Thd 139662383675200 CPU 0 6/04/25 16:21:54.374] Gap before file 'M25065_20250528_0_g1_t0.imec0.ap.bin' out_start_smp=9428188 inp_gap_smp=85290 out_zeros_smp=125
+[Thd 139662383675200 CPU 0 6/04/25 16:25:24.422] Gap before file 'M25065_20250528_0_g2_t0.imec0.ap.bin' out_start_smp=10745480 inp_gap_smp=206674 out_zeros_smp=125
+[Thd 139662383675200 CPU 0 6/04/25 16:25:51.005] Gap before file 'M25065_20250528_0_g3_t0.imec0.ap.bin' out_start_smp=10939893 inp_gap_smp=62135 out_zeros_smp=125
+[Thd 139662383675200 CPU 0 6/04/25 16:50:44.678] Gap before file 'M25065_20250528_0_g4_t0.imec0.ap.bin' out_start_smp=21240597 inp_gap_smp=321821 out_zeros_smp=125
+[Thd 139662383675200 CPU 0 6/04/25 16:52:31.557] Gap before file 'M25065_20250528_0_g5_t0.imec0.ap.bin' out_start_smp=22020866 inp_gap_smp=52937 out_zeros_smp=125
+[Thd 139662383675200 CPU 0 6/04/25 17:14:05.332] Gap before file 'M25065_20250528_0_g6_t0.imec0.ap.bin' out_start_smp=30981800 inp_gap_smp=75490 out_zeros_smp=125
+[Thd 139662383675200 CPU 0 6/04/25 17:31:44.704] 
