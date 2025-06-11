@@ -41,3 +41,63 @@
 [Thd 139662383675200 CPU 0 6/04/25 16:52:31.557] Gap before file 'M25065_20250528_0_g5_t0.imec0.ap.bin' out_start_smp=22020866 inp_gap_smp=52937 out_zeros_smp=125
 [Thd 139662383675200 CPU 0 6/04/25 17:14:05.332] Gap before file 'M25065_20250528_0_g6_t0.imec0.ap.bin' out_start_smp=30981800 inp_gap_smp=75490 out_zeros_smp=125
 [Thd 139662383675200 CPU 0 6/04/25 17:31:44.704] 
+[Thd 140273804584768 CPU 0 6/06/25 13:32:58.518] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250605/20250605_0 -run=M25065_20250605_0 -g=0,5 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250605/20250605_0 -out_prb_fld
+[Thd 140273804584768 CPU 0 6/06/25 13:32:58.523] Creating lf stream for probe 0.
+[Thd 140273804584768 CPU 0 6/06/25 13:32:58.938] Gap before file 'M25065_20250605_0_g1_t0.nidq.bin' out_start_smp=26906925 inp_gap_smp=209309 out_zeros_smp=529.
+[Thd 140273804584768 CPU 0 6/06/25 13:32:59.027] Gap before file 'M25065_20250605_0_g2_t0.nidq.bin' out_start_smp=34122197 inp_gap_smp=211723 out_zeros_smp=529.
+[Thd 140273804584768 CPU 0 6/06/25 13:32:59.644] Gap before file 'M25065_20250605_0_g3_t0.nidq.bin' out_start_smp=41295631 inp_gap_smp=1163949 out_zeros_smp=529.
+[Thd 140273804584768 CPU 0 6/06/25 13:33:00.005] Gap before file 'M25065_20250605_0_g4_t0.nidq.bin' out_start_smp=70109800 inp_gap_smp=1057044 out_zeros_smp=529.
+[Thd 140273804584768 CPU 0 6/06/25 13:33:00.102] Gap before file 'M25065_20250605_0_g5_t0.nidq.bin' out_start_smp=77608002 inp_gap_smp=275597 out_zeros_smp=529.
+[Thd 140273804584768 CPU 0 6/06/25 13:41:32.602] Gap before file 'M25065_20250605_0_g1_t0.imec0.ap.bin' out_start_smp=76200235 inp_gap_smp=592473 out_zeros_smp=1500.
+[Thd 140273804584768 CPU 0 6/06/25 13:43:48.237] Gap before file 'M25065_20250605_0_g2_t0.imec0.ap.bin' out_start_smp=96633840 inp_gap_smp=599508 out_zeros_smp=1500.
+[Thd 140273804584768 CPU 0 6/06/25 13:49:09.513] Gap before file 'M25065_20250605_0_g3_t0.imec0.ap.bin' out_start_smp=116948960 inp_gap_smp=3296205 out_zeros_smp=1500.
+[Thd 140273804584768 CPU 0 6/06/25 14:10:42.786] Gap before file 'M25065_20250605_0_g4_t0.imec0.ap.bin' out_start_smp=198550499 inp_gap_smp=2993218 out_zeros_smp=1500.
+[Thd 140273804584768 CPU 0 6/06/25 14:16:24.388] Gap before file 'M25065_20250605_0_g5_t0.imec0.ap.bin' out_start_smp=219785359 inp_gap_smp=780402 out_zeros_smp=1500.
+[Thd 140273804584768 CPU 0 6/06/25 14:37:07.820] Gap before file 'M25065_20250605_0_g1_t0.imec0.ap.bin' out_start_smp=6350019 inp_gap_smp=49373 out_zeros_smp=125
+[Thd 140273804584768 CPU 0 6/06/25 14:41:15.716] Gap before file 'M25065_20250605_0_g2_t0.imec0.ap.bin' out_start_smp=8052820 inp_gap_smp=49959 out_zeros_smp=125
+[Thd 140273804584768 CPU 0 6/06/25 14:45:23.727] Gap before file 'M25065_20250605_0_g3_t0.imec0.ap.bin' out_start_smp=9745747 inp_gap_smp=274684 out_zeros_smp=125
+[Thd 140273804584768 CPU 0 6/06/25 14:58:32.262] Gap before file 'M25065_20250605_0_g4_t0.imec0.ap.bin' out_start_smp=16545876 inp_gap_smp=249435 out_zeros_smp=125
+[Thd 140273804584768 CPU 0 6/06/25 15:01:02.921] Gap before file 'M25065_20250605_0_g5_t0.imec0.ap.bin' out_start_smp=18315447 inp_gap_smp=65034 out_zeros_smp=125
+[Thd 140273804584768 CPU 0 6/06/25 15:03:42.782] 
+[Thd 139730131085120 CPU 0 6/07/25 16:33:11.133] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -run=M25065_20250530_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -out_prb_fld
+[Thd 139730131085120 CPU 0 6/07/25 16:33:11.163] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0/M25065_20250530_0_g0/M25065_20250530_0_g0_t0.nidq.meta'.
+[Thd 139730131085120 CPU 0 6/07/25 16:33:11.163] 
+[Thd 140232262211392 CPU 0 6/07/25 16:57:07.486] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -run=M25065_20250530_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -out_prb_fld
+[Thd 140232262211392 CPU 0 6/07/25 16:57:07.586] Creating lf stream for probe 0.
+[Thd 140232262211392 CPU 0 6/07/25 16:57:08.194] Gap before file 'M25065_20250530_0_g1_t0.nidq.bin' out_start_smp=30201162 inp_gap_smp=504266 out_zeros_smp=529.
+[Thd 140232262211392 CPU 0 6/07/25 17:06:48.868] Gap before file 'M25065_20250530_0_g1_t0.imec0.ap.bin' out_start_smp=85529494 inp_gap_smp=1427826 out_zeros_smp=1500.
+[Thd 140232262211392 CPU 0 6/07/25 17:31:54.100] Gap before file 'M25065_20250530_0_g1_t0.imec0.ap.bin' out_start_smp=7127457 inp_gap_smp=118986 out_zeros_smp=125
+[Thd 140232262211392 CPU 0 6/07/25 17:37:24.000] 
+[Thd 139956621403968 CPU 0 6/09/25 10:07:06.120] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250606/20250606_0 -run=M25065_20250606_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250606/20250606_0 -out_prb_fld
+[Thd 139956621403968 CPU 0 6/09/25 10:07:06.145] Creating lf stream for probe 0.
+[Thd 139956621403968 CPU 0 6/09/25 10:07:06.162] Gap before file 'M25065_20250606_0_g1_t0.nidq.bin' out_start_smp=93444 inp_gap_smp=410704 out_zeros_smp=529.
+[Thd 139956621403968 CPU 0 6/09/25 10:07:17.158] Gap before file 'M25065_20250606_0_g1_t0.imec0.ap.bin' out_start_smp=264633 inp_gap_smp=1163104 out_zeros_smp=1500.
+[Thd 139956621403968 CPU 0 6/09/25 11:06:21.452] Gap before file 'M25065_20250606_0_g1_t0.imec0.ap.bin' out_start_smp=22052 inp_gap_smp=96926 out_zeros_smp=125
+[Thd 139956621403968 CPU 0 6/09/25 11:50:57.903] 
+[Thd 140548340315968 CPU 0 6/10/25 19:04:40.489] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0 -run=M25065_20250610_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0 -out_prb_fld
+[Thd 140548340315968 CPU 0 6/10/25 19:04:40.881] Creating lf stream for probe 0.
+[Thd 140548340315968 CPU 0 6/10/25 19:04:40.885] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_t0.nidq.meta'.
+[Thd 140548340315968 CPU 0 6/10/25 19:04:40.885] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.meta'.
+[Thd 140548340315968 CPU 0 6/10/25 19:04:40.885] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.meta'.
+[Thd 140548340315968 CPU 0 6/10/25 19:04:41.028] File not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_t0.nidq.bin'.
+[Thd 140548340315968 CPU 0 6/10/25 19:07:30.676] File not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.bin'.
+[Thd 140548340315968 CPU 0 6/10/25 19:10:52.168] File not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.bin'.
+[Thd 140548340315968 CPU 0 6/10/25 19:10:53.391] 
+[Thd 140093109937984 CPU 0 6/10/25 20:18:18.294] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -run=M25065_20250610_2 -g=0,2 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -out_prb_fld
+[Thd 140093109937984 CPU 0 6/10/25 20:18:18.319] Creating lf stream for probe 0.
+[Thd 140093109937984 CPU 0 6/10/25 20:18:18.340] Gap before file 'M25065_20250610_2_g1_t0.nidq.bin' out_start_smp=515385 inp_gap_smp=351532 out_zeros_smp=529.
+[Thd 140093109937984 CPU 0 6/10/25 20:18:18.434] Gap before file 'M25065_20250610_2_g2_t0.nidq.bin' out_start_smp=7401872 inp_gap_smp=381623 out_zeros_smp=529.
+[Thd 140093109937984 CPU 0 6/10/25 20:18:30.235] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=1459566 inp_gap_smp=995516 out_zeros_smp=1500.
+[Thd 140093109937984 CPU 0 6/10/25 20:20:50.417] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=20962053 inp_gap_smp=1080602 out_zeros_smp=1500.
+[Thd 140093109937984 CPU 0 6/10/25 20:23:56.113] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=121630 inp_gap_smp=82960 out_zeros_smp=125
+[Thd 140093109937984 CPU 0 6/10/25 20:26:30.522] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=1746838 inp_gap_smp=90050 out_zeros_smp=125
+[Thd 140093109937984 CPU 0 6/10/25 20:29:03.068] 
+[Thd 140164410406720 CPU 0 6/10/25 21:08:48.224] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -run=M25065_20250610_2 -g=0,2 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -out_prb_fld
+[Thd 140164410406720 CPU 0 6/10/25 21:08:48.228] Creating lf stream for probe 0.
+[Thd 140164410406720 CPU 0 6/10/25 21:08:48.249] Gap before file 'M25065_20250610_2_g1_t0.nidq.bin' out_start_smp=515385 inp_gap_smp=351532 out_zeros_smp=529.
+[Thd 140164410406720 CPU 0 6/10/25 21:08:48.343] Gap before file 'M25065_20250610_2_g2_t0.nidq.bin' out_start_smp=7401872 inp_gap_smp=381623 out_zeros_smp=529.
+[Thd 140164410406720 CPU 0 6/10/25 21:09:00.482] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=1459566 inp_gap_smp=995516 out_zeros_smp=1500.
+[Thd 140164410406720 CPU 0 6/10/25 21:11:21.194] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=20962053 inp_gap_smp=1080602 out_zeros_smp=1500.
+[Thd 140164410406720 CPU 0 6/10/25 21:14:13.244] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=121630 inp_gap_smp=82960 out_zeros_smp=125
+[Thd 140164410406720 CPU 0 6/10/25 21:16:36.879] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=1746838 inp_gap_smp=90050 out_zeros_smp=125
+[Thd 140164410406720 CPU 0 6/10/25 21:19:13.926] 
