@@ -1,103 +1,126 @@
-[Thd 139688186689344 CPU 0 8/19/24 14:07:07.529] Cmdline: CatGT -dir=/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2 -run=M24019_20240719_2 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -prb=0 -zerofillmax=50 -xa=0,0,0,1,1,500 -xa=0,0,1,0.2,0.2,0 -xia=0,0,1,0.2,0.2,0 -xa=0,0,2,1,1,0 -xia=0,0,2,4,4,0 -xa=0,0,3,1,1,0 -xia=0,0,3,4,4,0 -xia=0,0,4,4,4,0 -xia=0,0,5,4,4,0 -xa=0,0,6,1,1,0 -xa=0,0,7,1,1,0 -xia=0,0,6,4,4,0 -xia=0,0,7,4,4,0 -dest=/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2 -out_prb_fld
-[Thd 140162369861440 CPU 0 8/19/24 14:07:07.529] Cmdline: CatGT -dir=/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_0 -run=M24019_20240719_0 -g=0,6 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -prb=0 -zerofillmax=50 -xa=0,0,0,1,1,500 -xa=0,0,1,0.2,0.2,0 -xia=0,0,1,0.2,0.2,0 -xa=0,0,2,1,1,0 -xia=0,0,2,4,4,0 -xa=0,0,3,1,1,0 -xia=0,0,3,4,4,0 -xia=0,0,4,4,4,0 -xia=0,0,5,4,4,0 -xa=0,0,6,1,1,0 -xa=0,0,7,1,1,0 -xia=0,0,6,4,4,0 -xia=0,0,7,4,4,0 -dest=/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_0 -out_prb_fld
-[Thd 139688186689344 CPU 0 8/19/24 14:07:07.539] Meta file not found '/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2/M24019_20240719_2_g1/M24019_20240719_2_g1_t0.nidq.meta'.
-[Thd 139688186689344 CPU 0 8/19/24 14:07:07.539] Meta file not found '/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2/M24019_20240719_2_g1/M24019_20240719_2_g1_imec0/M24019_20240719_2_g1_t0.imec0.ap.meta'.
-[Thd 140162369861440 CPU 0 8/19/24 14:07:09.258] Gap before file 'M24019_20240719_0_g1_t0.nidq.bin' out_start_smp=3194198 inp_gap_smp=899043 out_zeros_smp=529.
-[Thd 140162369861440 CPU 0 8/19/24 14:07:12.897] Gap before file 'M24019_20240719_0_g2_t0.nidq.bin' out_start_smp=7718056 inp_gap_smp=1193062 out_zeros_smp=529.
-[Thd 139688186689344 CPU 0 8/19/24 14:07:13.522] File not found '/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2/M24019_20240719_2_g1/M24019_20240719_2_g1_t0.nidq.bin'.
-[Thd 140162369861440 CPU 0 8/19/24 14:07:20.190] Gap before file 'M24019_20240719_0_g3_t0.nidq.bin' out_start_smp=11913717 inp_gap_smp=1724728 out_zeros_smp=529.
-[Thd 140162369861440 CPU 0 8/19/24 14:07:24.835] Gap before file 'M24019_20240719_0_g4_t0.nidq.bin' out_start_smp=21063017 inp_gap_smp=2360555 out_zeros_smp=529.
-[Thd 140162369861440 CPU 0 8/19/24 14:07:29.927] Gap before file 'M24019_20240719_0_g5_t0.nidq.bin' out_start_smp=29769988 inp_gap_smp=2875507 out_zeros_smp=529.
-[Thd 140162369861440 CPU 0 8/19/24 14:07:34.097] Gap before file 'M24019_20240719_0_g6_t0.nidq.bin' out_start_smp=36574682 inp_gap_smp=3229131 out_zeros_smp=529.
-[Thd 140162369861440 CPU 0 8/19/24 14:14:16.045] Gap before file 'M24019_20240719_0_g1_t0.imec0.ap.bin' out_start_smp=9045949 inp_gap_smp=2545985 out_zeros_smp=1500.
-[Thd 140162369861440 CPU 0 8/19/24 14:23:48.685] Gap before file 'M24019_20240719_0_g2_t0.imec0.ap.bin' out_start_smp=21857487 inp_gap_smp=3378525 out_zeros_smp=1500.
-[Thd 139688186689344 CPU 0 8/19/24 14:28:17.692] File not found '/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2/M24019_20240719_2_g1/M24019_20240719_2_g1_imec0/M24019_20240719_2_g1_t0.imec0.ap.bin'.
-[Thd 139688186689344 CPU 0 8/19/24 14:30:09.185] 
-[Thd 140162369861440 CPU 0 8/19/24 14:31:14.140] Gap before file 'M24019_20240719_0_g3_t0.imec0.ap.bin' out_start_smp=33739574 inp_gap_smp=4884078 out_zeros_smp=1500.
-[Thd 140162369861440 CPU 0 8/19/24 14:40:18.424] Gap before file 'M24019_20240719_0_g4_t0.imec0.ap.bin' out_start_smp=59650335 inp_gap_smp=6684485 out_zeros_smp=1500.
-[Thd 140162369861440 CPU 0 8/19/24 14:50:46.650] Gap before file 'M24019_20240719_0_g5_t0.imec0.ap.bin' out_start_smp=84308421 inp_gap_smp=8142584 out_zeros_smp=1500.
-[Thd 140162369861440 CPU 0 8/19/24 14:59:20.115] Gap before file 'M24019_20240719_0_g6_t0.imec0.ap.bin' out_start_smp=103579273 inp_gap_smp=9143859 out_zeros_smp=1500.
-[Thd 140162369861440 CPU 0 8/19/24 15:06:08.839] 
-[Thd 140092574611264 CPU 0 8/19/24 15:06:09.271] Cmdline: CatGT -t=cat -prb_fld -prb_miss_ok -ni -ap -prb=0 -xa=0,0,0,1,1,500 -xa=0,0,1,0.2,0.2,0 -xia=0,0,1,0.2,0.2,0 -xa=0,0,2,1,1,0 -xia=0,0,2,4,4,0 -xa=0,0,3,1,1,0 -xia=0,0,3,4,4,0 -xia=0,0,4,4,4,0 -xia=0,0,5,4,4,0 -xa=0,0,6,1,1,0 -xa=0,0,7,1,1,0 -xia=0,0,6,4,4,0 -xia=0,0,7,4,4,0 -supercat={/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_0,catgt_M24019_20240719_0_g0}{/home/lab/spikeinterface_sorting/temp_data/M24019/20240719/20240719_2,catgt_M24019_20240719_2_g0} -supercat_trim_edges -dest=/home/lab/spikeinterface_sorting/temp_data/M24019/20240719
-[Thd 140092574611264 CPU 0 8/19/24 15:58:20.492] 
-[Thd 139662383675200 CPU 0 6/04/25 14:07:02.903] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/SI_processing/temp_data/M25065/20250528/20250528_0 -run=M25065_20250528_0 -g=0,6 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/SI_processing/temp_data/M25065/20250528/20250528_0 -out_prb_fld
-[Thd 139662383675200 CPU 0 6/04/25 14:07:02.946] Creating lf stream for probe 0.
-[Thd 139662383675200 CPU 0 6/04/25 14:07:08.895] Gap before file 'M25065_20250528_0_g1_t0.nidq.bin' out_start_smp=39950041 inp_gap_smp=361713 out_zeros_smp=529.
-[Thd 139662383675200 CPU 0 6/04/25 14:07:09.734] Gap before file 'M25065_20250528_0_g2_t0.nidq.bin' out_start_smp=45531795 inp_gap_smp=875796 out_zeros_smp=529.
-[Thd 139662383675200 CPU 0 6/04/25 14:07:09.746] Gap before file 'M25065_20250528_0_g3_t0.nidq.bin' out_start_smp=46355584 inp_gap_smp=263294 out_zeros_smp=529.
-[Thd 139662383675200 CPU 0 6/04/25 14:07:10.323] Gap before file 'M25065_20250528_0_g4_t0.nidq.bin' out_start_smp=90002731 inp_gap_smp=1364010 out_zeros_smp=529.
-[Thd 139662383675200 CPU 0 6/04/25 14:07:10.368] Gap before file 'M25065_20250528_0_g5_t0.nidq.bin' out_start_smp=93308961 inp_gap_smp=224338 out_zeros_smp=529.
-[Thd 139662383675200 CPU 0 6/04/25 14:07:13.724] Gap before file 'M25065_20250528_0_g6_t0.nidq.bin' out_start_smp=131279106 inp_gap_smp=320181 out_zeros_smp=529.
-[Thd 139662383675200 CPU 0 6/04/25 14:34:18.396] Gap before file 'M25065_20250528_0_g1_t0.imec0.ap.bin' out_start_smp=113138256 inp_gap_smp=1023470 out_zeros_smp=1500.
-[Thd 139662383675200 CPU 0 6/04/25 14:38:35.235] Gap before file 'M25065_20250528_0_g2_t0.imec0.ap.bin' out_start_smp=128945750 inp_gap_smp=2480096 out_zeros_smp=1500.
-[Thd 139662383675200 CPU 0 6/04/25 14:39:08.302] Gap before file 'M25065_20250528_0_g3_t0.imec0.ap.bin' out_start_smp=131278716 inp_gap_smp=745622 out_zeros_smp=1500.
-[Thd 139662383675200 CPU 0 6/04/25 15:09:46.066] Gap before file 'M25065_20250528_0_g4_t0.imec0.ap.bin' out_start_smp=254887153 inp_gap_smp=3861856 out_zeros_smp=1500.
-[Thd 139662383675200 CPU 0 6/04/25 15:11:59.336] Gap before file 'M25065_20250528_0_g5_t0.imec0.ap.bin' out_start_smp=264250376 inp_gap_smp=635247 out_zeros_smp=1500.
-[Thd 139662383675200 CPU 0 6/04/25 15:38:18.531] Gap before file 'M25065_20250528_0_g6_t0.imec0.ap.bin' out_start_smp=371781582 inp_gap_smp=905875 out_zeros_smp=1500.
-[Thd 139662383675200 CPU 0 6/04/25 16:21:54.374] Gap before file 'M25065_20250528_0_g1_t0.imec0.ap.bin' out_start_smp=9428188 inp_gap_smp=85290 out_zeros_smp=125
-[Thd 139662383675200 CPU 0 6/04/25 16:25:24.422] Gap before file 'M25065_20250528_0_g2_t0.imec0.ap.bin' out_start_smp=10745480 inp_gap_smp=206674 out_zeros_smp=125
-[Thd 139662383675200 CPU 0 6/04/25 16:25:51.005] Gap before file 'M25065_20250528_0_g3_t0.imec0.ap.bin' out_start_smp=10939893 inp_gap_smp=62135 out_zeros_smp=125
-[Thd 139662383675200 CPU 0 6/04/25 16:50:44.678] Gap before file 'M25065_20250528_0_g4_t0.imec0.ap.bin' out_start_smp=21240597 inp_gap_smp=321821 out_zeros_smp=125
-[Thd 139662383675200 CPU 0 6/04/25 16:52:31.557] Gap before file 'M25065_20250528_0_g5_t0.imec0.ap.bin' out_start_smp=22020866 inp_gap_smp=52937 out_zeros_smp=125
-[Thd 139662383675200 CPU 0 6/04/25 17:14:05.332] Gap before file 'M25065_20250528_0_g6_t0.imec0.ap.bin' out_start_smp=30981800 inp_gap_smp=75490 out_zeros_smp=125
-[Thd 139662383675200 CPU 0 6/04/25 17:31:44.704] 
-[Thd 140273804584768 CPU 0 6/06/25 13:32:58.518] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250605/20250605_0 -run=M25065_20250605_0 -g=0,5 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250605/20250605_0 -out_prb_fld
-[Thd 140273804584768 CPU 0 6/06/25 13:32:58.523] Creating lf stream for probe 0.
-[Thd 140273804584768 CPU 0 6/06/25 13:32:58.938] Gap before file 'M25065_20250605_0_g1_t0.nidq.bin' out_start_smp=26906925 inp_gap_smp=209309 out_zeros_smp=529.
-[Thd 140273804584768 CPU 0 6/06/25 13:32:59.027] Gap before file 'M25065_20250605_0_g2_t0.nidq.bin' out_start_smp=34122197 inp_gap_smp=211723 out_zeros_smp=529.
-[Thd 140273804584768 CPU 0 6/06/25 13:32:59.644] Gap before file 'M25065_20250605_0_g3_t0.nidq.bin' out_start_smp=41295631 inp_gap_smp=1163949 out_zeros_smp=529.
-[Thd 140273804584768 CPU 0 6/06/25 13:33:00.005] Gap before file 'M25065_20250605_0_g4_t0.nidq.bin' out_start_smp=70109800 inp_gap_smp=1057044 out_zeros_smp=529.
-[Thd 140273804584768 CPU 0 6/06/25 13:33:00.102] Gap before file 'M25065_20250605_0_g5_t0.nidq.bin' out_start_smp=77608002 inp_gap_smp=275597 out_zeros_smp=529.
-[Thd 140273804584768 CPU 0 6/06/25 13:41:32.602] Gap before file 'M25065_20250605_0_g1_t0.imec0.ap.bin' out_start_smp=76200235 inp_gap_smp=592473 out_zeros_smp=1500.
-[Thd 140273804584768 CPU 0 6/06/25 13:43:48.237] Gap before file 'M25065_20250605_0_g2_t0.imec0.ap.bin' out_start_smp=96633840 inp_gap_smp=599508 out_zeros_smp=1500.
-[Thd 140273804584768 CPU 0 6/06/25 13:49:09.513] Gap before file 'M25065_20250605_0_g3_t0.imec0.ap.bin' out_start_smp=116948960 inp_gap_smp=3296205 out_zeros_smp=1500.
-[Thd 140273804584768 CPU 0 6/06/25 14:10:42.786] Gap before file 'M25065_20250605_0_g4_t0.imec0.ap.bin' out_start_smp=198550499 inp_gap_smp=2993218 out_zeros_smp=1500.
-[Thd 140273804584768 CPU 0 6/06/25 14:16:24.388] Gap before file 'M25065_20250605_0_g5_t0.imec0.ap.bin' out_start_smp=219785359 inp_gap_smp=780402 out_zeros_smp=1500.
-[Thd 140273804584768 CPU 0 6/06/25 14:37:07.820] Gap before file 'M25065_20250605_0_g1_t0.imec0.ap.bin' out_start_smp=6350019 inp_gap_smp=49373 out_zeros_smp=125
-[Thd 140273804584768 CPU 0 6/06/25 14:41:15.716] Gap before file 'M25065_20250605_0_g2_t0.imec0.ap.bin' out_start_smp=8052820 inp_gap_smp=49959 out_zeros_smp=125
-[Thd 140273804584768 CPU 0 6/06/25 14:45:23.727] Gap before file 'M25065_20250605_0_g3_t0.imec0.ap.bin' out_start_smp=9745747 inp_gap_smp=274684 out_zeros_smp=125
-[Thd 140273804584768 CPU 0 6/06/25 14:58:32.262] Gap before file 'M25065_20250605_0_g4_t0.imec0.ap.bin' out_start_smp=16545876 inp_gap_smp=249435 out_zeros_smp=125
-[Thd 140273804584768 CPU 0 6/06/25 15:01:02.921] Gap before file 'M25065_20250605_0_g5_t0.imec0.ap.bin' out_start_smp=18315447 inp_gap_smp=65034 out_zeros_smp=125
-[Thd 140273804584768 CPU 0 6/06/25 15:03:42.782] 
-[Thd 139730131085120 CPU 0 6/07/25 16:33:11.133] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -run=M25065_20250530_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -out_prb_fld
-[Thd 139730131085120 CPU 0 6/07/25 16:33:11.163] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0/M25065_20250530_0_g0/M25065_20250530_0_g0_t0.nidq.meta'.
-[Thd 139730131085120 CPU 0 6/07/25 16:33:11.163] 
-[Thd 140232262211392 CPU 0 6/07/25 16:57:07.486] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -run=M25065_20250530_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250530/20250530_0 -out_prb_fld
-[Thd 140232262211392 CPU 0 6/07/25 16:57:07.586] Creating lf stream for probe 0.
-[Thd 140232262211392 CPU 0 6/07/25 16:57:08.194] Gap before file 'M25065_20250530_0_g1_t0.nidq.bin' out_start_smp=30201162 inp_gap_smp=504266 out_zeros_smp=529.
-[Thd 140232262211392 CPU 0 6/07/25 17:06:48.868] Gap before file 'M25065_20250530_0_g1_t0.imec0.ap.bin' out_start_smp=85529494 inp_gap_smp=1427826 out_zeros_smp=1500.
-[Thd 140232262211392 CPU 0 6/07/25 17:31:54.100] Gap before file 'M25065_20250530_0_g1_t0.imec0.ap.bin' out_start_smp=7127457 inp_gap_smp=118986 out_zeros_smp=125
-[Thd 140232262211392 CPU 0 6/07/25 17:37:24.000] 
-[Thd 139956621403968 CPU 0 6/09/25 10:07:06.120] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250606/20250606_0 -run=M25065_20250606_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250606/20250606_0 -out_prb_fld
-[Thd 139956621403968 CPU 0 6/09/25 10:07:06.145] Creating lf stream for probe 0.
-[Thd 139956621403968 CPU 0 6/09/25 10:07:06.162] Gap before file 'M25065_20250606_0_g1_t0.nidq.bin' out_start_smp=93444 inp_gap_smp=410704 out_zeros_smp=529.
-[Thd 139956621403968 CPU 0 6/09/25 10:07:17.158] Gap before file 'M25065_20250606_0_g1_t0.imec0.ap.bin' out_start_smp=264633 inp_gap_smp=1163104 out_zeros_smp=1500.
-[Thd 139956621403968 CPU 0 6/09/25 11:06:21.452] Gap before file 'M25065_20250606_0_g1_t0.imec0.ap.bin' out_start_smp=22052 inp_gap_smp=96926 out_zeros_smp=125
-[Thd 139956621403968 CPU 0 6/09/25 11:50:57.903] 
-[Thd 140548340315968 CPU 0 6/10/25 19:04:40.489] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0 -run=M25065_20250610_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0 -out_prb_fld
-[Thd 140548340315968 CPU 0 6/10/25 19:04:40.881] Creating lf stream for probe 0.
-[Thd 140548340315968 CPU 0 6/10/25 19:04:40.885] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_t0.nidq.meta'.
-[Thd 140548340315968 CPU 0 6/10/25 19:04:40.885] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.meta'.
-[Thd 140548340315968 CPU 0 6/10/25 19:04:40.885] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.meta'.
-[Thd 140548340315968 CPU 0 6/10/25 19:04:41.028] File not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_t0.nidq.bin'.
-[Thd 140548340315968 CPU 0 6/10/25 19:07:30.676] File not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.bin'.
-[Thd 140548340315968 CPU 0 6/10/25 19:10:52.168] File not found '/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_0/M25065_20250610_0_g1/M25065_20250610_0_g1_imec0/M25065_20250610_0_g1_t0.imec0.ap.bin'.
-[Thd 140548340315968 CPU 0 6/10/25 19:10:53.391] 
-[Thd 140093109937984 CPU 0 6/10/25 20:18:18.294] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -run=M25065_20250610_2 -g=0,2 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -out_prb_fld
-[Thd 140093109937984 CPU 0 6/10/25 20:18:18.319] Creating lf stream for probe 0.
-[Thd 140093109937984 CPU 0 6/10/25 20:18:18.340] Gap before file 'M25065_20250610_2_g1_t0.nidq.bin' out_start_smp=515385 inp_gap_smp=351532 out_zeros_smp=529.
-[Thd 140093109937984 CPU 0 6/10/25 20:18:18.434] Gap before file 'M25065_20250610_2_g2_t0.nidq.bin' out_start_smp=7401872 inp_gap_smp=381623 out_zeros_smp=529.
-[Thd 140093109937984 CPU 0 6/10/25 20:18:30.235] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=1459566 inp_gap_smp=995516 out_zeros_smp=1500.
-[Thd 140093109937984 CPU 0 6/10/25 20:20:50.417] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=20962053 inp_gap_smp=1080602 out_zeros_smp=1500.
-[Thd 140093109937984 CPU 0 6/10/25 20:23:56.113] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=121630 inp_gap_smp=82960 out_zeros_smp=125
-[Thd 140093109937984 CPU 0 6/10/25 20:26:30.522] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=1746838 inp_gap_smp=90050 out_zeros_smp=125
-[Thd 140093109937984 CPU 0 6/10/25 20:29:03.068] 
-[Thd 140164410406720 CPU 0 6/10/25 21:08:48.224] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -run=M25065_20250610_2 -g=0,2 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25065/20250610/20250610_2 -out_prb_fld
-[Thd 140164410406720 CPU 0 6/10/25 21:08:48.228] Creating lf stream for probe 0.
-[Thd 140164410406720 CPU 0 6/10/25 21:08:48.249] Gap before file 'M25065_20250610_2_g1_t0.nidq.bin' out_start_smp=515385 inp_gap_smp=351532 out_zeros_smp=529.
-[Thd 140164410406720 CPU 0 6/10/25 21:08:48.343] Gap before file 'M25065_20250610_2_g2_t0.nidq.bin' out_start_smp=7401872 inp_gap_smp=381623 out_zeros_smp=529.
-[Thd 140164410406720 CPU 0 6/10/25 21:09:00.482] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=1459566 inp_gap_smp=995516 out_zeros_smp=1500.
-[Thd 140164410406720 CPU 0 6/10/25 21:11:21.194] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=20962053 inp_gap_smp=1080602 out_zeros_smp=1500.
-[Thd 140164410406720 CPU 0 6/10/25 21:14:13.244] Gap before file 'M25065_20250610_2_g1_t0.imec0.ap.bin' out_start_smp=121630 inp_gap_smp=82960 out_zeros_smp=125
-[Thd 140164410406720 CPU 0 6/10/25 21:16:36.879] Gap before file 'M25065_20250610_2_g2_t0.imec0.ap.bin' out_start_smp=1746838 inp_gap_smp=90050 out_zeros_smp=125
-[Thd 140164410406720 CPU 0 6/10/25 21:19:13.926] 
+[Thd 140088206944064 CPU 0 9/04/25 09:20:07.166] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -run=M25104_20250902_2 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -out_prb_fld
+[Thd 140088206944064 CPU 0 9/04/25 09:20:07.167] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g0/M25104_20250902_2_g0_t0.nidq.meta'.
+[Thd 140088206944064 CPU 0 9/04/25 09:20:07.167] 
+[Thd 140180659435328 CPU 0 9/04/25 09:27:13.145] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -run=M25104_20250902_2 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -out_prb_fld
+[Thd 140180659435328 CPU 0 9/04/25 09:27:13.147] Creating lf stream for probe 0.
+[Thd 140180659435328 CPU 0 9/04/25 09:27:13.152] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_t0.nidq.meta'.
+[Thd 140180659435328 CPU 0 9/04/25 09:27:13.152] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.meta'.
+[Thd 140180659435328 CPU 0 9/04/25 09:27:13.153] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.meta'.
+[Thd 140180659435328 CPU 0 9/04/25 09:27:13.235] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_t0.nidq.bin'.
+[Thd 140180659435328 CPU 0 9/04/25 09:28:41.875] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.bin'.
+[Thd 140180659435328 CPU 0 9/04/25 09:30:16.689] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.bin'.
+[Thd 140180659435328 CPU 0 9/04/25 09:30:18.069] 
+[Thd 140654724380480 CPU 0 9/04/25 09:35:48.269] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -run=M25104_20250902_2 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -out_prb_fld
+[Thd 140654724380480 CPU 0 9/04/25 09:35:48.271] Creating lf stream for probe 0.
+[Thd 140654724380480 CPU 0 9/04/25 09:35:48.275] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_t0.nidq.meta'.
+[Thd 140654724380480 CPU 0 9/04/25 09:35:48.275] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.meta'.
+[Thd 140654724380480 CPU 0 9/04/25 09:35:48.275] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.meta'.
+[Thd 140654724380480 CPU 0 9/04/25 09:35:48.341] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_t0.nidq.bin'.
+[Thd 140654724380480 CPU 0 9/04/25 09:37:19.845] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.bin'.
+[Thd 140654724380480 CPU 0 9/04/25 09:39:05.426] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.bin'.
+[Thd 140654724380480 CPU 0 9/04/25 09:39:06.904] 
+[Thd 140588946536256 CPU 0 9/04/25 09:50:16.031] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -run=M25104_20250902_2 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2 -out_prb_fld
+[Thd 140588946536256 CPU 0 9/04/25 09:50:16.033] Creating lf stream for probe 0.
+[Thd 140588946536256 CPU 0 9/04/25 09:50:16.038] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_t0.nidq.meta'.
+[Thd 140588946536256 CPU 0 9/04/25 09:50:16.038] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.meta'.
+[Thd 140588946536256 CPU 0 9/04/25 09:50:16.038] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.meta'.
+[Thd 140588946536256 CPU 0 9/04/25 09:50:16.101] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_t0.nidq.bin'.
+[Thd 140588946536256 CPU 0 9/04/25 09:51:47.962] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.bin'.
+[Thd 140588946536256 CPU 0 9/04/25 09:53:30.533] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_2/M25104_20250902_2_g1/M25104_20250902_2_g1_imec0/M25104_20250902_2_g1_t0.imec0.ap.bin'.
+[Thd 140588946536256 CPU 0 9/04/25 09:53:30.658] 
+[Thd 140236955735872 CPU 0 9/04/25 10:35:48.400] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3 -run=M25104_20250902_3 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3 -out_prb_fld
+[Thd 140236955735872 CPU 0 9/04/25 10:35:48.403] Creating lf stream for probe 0.
+[Thd 140236955735872 CPU 0 9/04/25 10:35:48.407] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_t0.nidq.meta'.
+[Thd 140236955735872 CPU 0 9/04/25 10:35:48.407] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.meta'.
+[Thd 140236955735872 CPU 0 9/04/25 10:35:48.407] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.meta'.
+[Thd 140236955735872 CPU 0 9/04/25 10:35:48.467] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_t0.nidq.bin'.
+[Thd 140236955735872 CPU 0 9/04/25 10:37:15.807] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.bin'.
+[Thd 140236955735872 CPU 0 9/04/25 10:38:57.942] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.bin'.
+[Thd 140236955735872 CPU 0 9/04/25 10:38:59.214] 
+[Thd 139683494045504 CPU 0 9/04/25 10:41:27.855] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3 -run=M25104_20250902_3 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3 -out_prb_fld
+[Thd 139683494045504 CPU 0 9/04/25 10:41:27.858] Creating lf stream for probe 0.
+[Thd 139683494045504 CPU 0 9/04/25 10:41:27.862] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_t0.nidq.meta'.
+[Thd 139683494045504 CPU 0 9/04/25 10:41:27.862] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.meta'.
+[Thd 139683494045504 CPU 0 9/04/25 10:41:27.862] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.meta'.
+[Thd 139683494045504 CPU 0 9/04/25 10:41:27.923] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_t0.nidq.bin'.
+[Thd 139683494045504 CPU 0 9/04/25 10:42:57.347] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.bin'.
+[Thd 139683494045504 CPU 0 9/04/25 10:44:39.057] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_3/M25104_20250902_3_g1/M25104_20250902_3_g1_imec0/M25104_20250902_3_g1_t0.imec0.ap.bin'.
+[Thd 139683494045504 CPU 0 9/04/25 10:44:39.947] 
+[Thd 140284462384960 CPU 0 9/04/25 11:08:36.146] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4 -run=M25104_20250902_4 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4 -out_prb_fld
+[Thd 140284462384960 CPU 0 9/04/25 11:08:36.149] Creating lf stream for probe 0.
+[Thd 140284462384960 CPU 0 9/04/25 11:08:36.153] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_t0.nidq.meta'.
+[Thd 140284462384960 CPU 0 9/04/25 11:08:36.153] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.meta'.
+[Thd 140284462384960 CPU 0 9/04/25 11:08:36.153] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.meta'.
+[Thd 140284462384960 CPU 0 9/04/25 11:08:36.222] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_t0.nidq.bin'.
+[Thd 140284462384960 CPU 0 9/04/25 11:10:10.921] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.bin'.
+[Thd 140284462384960 CPU 0 9/04/25 11:11:53.713] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.bin'.
+[Thd 140284462384960 CPU 0 9/04/25 11:11:53.991] 
+[Thd 139939629840192 CPU 0 9/04/25 11:59:53.897] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5 -run=M25104_20250902_5 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5 -out_prb_fld
+[Thd 139939629840192 CPU 0 9/04/25 11:59:53.897] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g0/M25104_20250902_5_g0_t0.nidq.meta'.
+[Thd 139939629840192 CPU 0 9/04/25 11:59:53.897] 
+[Thd 140498444957504 CPU 0 9/04/25 12:10:07.592] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5 -run=M25104_20250902_5 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5 -out_prb_fld
+[Thd 140498444957504 CPU 0 9/04/25 12:10:07.592] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g0/M25104_20250902_5_g0_t0.nidq.meta'.
+[Thd 140498444957504 CPU 0 9/04/25 12:10:07.592] 
+[Thd 139859655857984 CPU 0 9/04/25 12:13:52.973] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5 -run=M25104_20250902_5 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5 -out_prb_fld
+[Thd 139859655857984 CPU 0 9/04/25 12:13:52.977] Creating lf stream for probe 0.
+[Thd 139859655857984 CPU 0 9/04/25 12:13:52.982] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g1/M25104_20250902_5_g1_t0.nidq.meta'.
+[Thd 139859655857984 CPU 0 9/04/25 12:13:52.982] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g1/M25104_20250902_5_g1_imec0/M25104_20250902_5_g1_t0.imec0.ap.meta'.
+[Thd 139859655857984 CPU 0 9/04/25 12:13:52.982] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g1/M25104_20250902_5_g1_imec0/M25104_20250902_5_g1_t0.imec0.ap.meta'.
+[Thd 139859655857984 CPU 0 9/04/25 12:13:53.050] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g1/M25104_20250902_5_g1_t0.nidq.bin'.
+[Thd 139859655857984 CPU 0 9/04/25 12:15:31.537] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g1/M25104_20250902_5_g1_imec0/M25104_20250902_5_g1_t0.imec0.ap.bin'.
+[Thd 139859655857984 CPU 0 9/04/25 12:17:15.902] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_5/M25104_20250902_5_g1/M25104_20250902_5_g1_imec0/M25104_20250902_5_g1_t0.imec0.ap.bin'.
+[Thd 139859655857984 CPU 0 9/04/25 12:17:16.106] 
+[Thd 140546685486912 CPU 0 9/04/25 12:53:09.746] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6 -run=M25104_20250902_6 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6 -out_prb_fld
+[Thd 140546685486912 CPU 0 9/04/25 12:53:09.748] Creating lf stream for probe 0.
+[Thd 140546685486912 CPU 0 9/04/25 12:53:09.753] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6/M25104_20250902_6_g1/M25104_20250902_6_g1_t0.nidq.meta'.
+[Thd 140546685486912 CPU 0 9/04/25 12:53:09.753] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6/M25104_20250902_6_g1/M25104_20250902_6_g1_imec0/M25104_20250902_6_g1_t0.imec0.ap.meta'.
+[Thd 140546685486912 CPU 0 9/04/25 12:53:09.753] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6/M25104_20250902_6_g1/M25104_20250902_6_g1_imec0/M25104_20250902_6_g1_t0.imec0.ap.meta'.
+[Thd 140546685486912 CPU 0 9/04/25 12:53:09.814] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6/M25104_20250902_6_g1/M25104_20250902_6_g1_t0.nidq.bin'.
+[Thd 140546685486912 CPU 0 9/04/25 12:54:38.070] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6/M25104_20250902_6_g1/M25104_20250902_6_g1_imec0/M25104_20250902_6_g1_t0.imec0.ap.bin'.
+[Thd 140546685486912 CPU 0 9/04/25 12:56:14.065] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_6/M25104_20250902_6_g1/M25104_20250902_6_g1_imec0/M25104_20250902_6_g1_t0.imec0.ap.bin'.
+[Thd 140546685486912 CPU 0 9/04/25 12:56:15.078] 
+[Thd 140004841928512 CPU 0 9/04/25 13:40:37.108] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7 -run=M25104_20250902_7 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7 -out_prb_fld
+[Thd 140004841928512 CPU 0 9/04/25 13:40:37.110] Creating lf stream for probe 0.
+[Thd 140004841928512 CPU 0 9/04/25 13:40:37.114] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7/M25104_20250902_7_g1/M25104_20250902_7_g1_t0.nidq.meta'.
+[Thd 140004841928512 CPU 0 9/04/25 13:40:37.114] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7/M25104_20250902_7_g1/M25104_20250902_7_g1_imec0/M25104_20250902_7_g1_t0.imec0.ap.meta'.
+[Thd 140004841928512 CPU 0 9/04/25 13:40:37.114] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7/M25104_20250902_7_g1/M25104_20250902_7_g1_imec0/M25104_20250902_7_g1_t0.imec0.ap.meta'.
+[Thd 140004841928512 CPU 0 9/04/25 13:40:37.177] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7/M25104_20250902_7_g1/M25104_20250902_7_g1_t0.nidq.bin'.
+[Thd 140004841928512 CPU 0 9/04/25 13:42:06.481] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7/M25104_20250902_7_g1/M25104_20250902_7_g1_imec0/M25104_20250902_7_g1_t0.imec0.ap.bin'.
+[Thd 140004841928512 CPU 0 9/04/25 13:43:42.993] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_7/M25104_20250902_7_g1/M25104_20250902_7_g1_imec0/M25104_20250902_7_g1_t0.imec0.ap.bin'.
+[Thd 140004841928512 CPU 0 9/04/25 13:43:44.819] 
+[Thd 140205679761216 CPU 0 9/04/25 15:01:26.370] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4 -run=M25104_20250902_4 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4 -out_prb_fld
+[Thd 140205679761216 CPU 0 9/04/25 15:01:26.373] Creating lf stream for probe 0.
+[Thd 140205679761216 CPU 0 9/04/25 15:01:26.377] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_t0.nidq.meta'.
+[Thd 140205679761216 CPU 0 9/04/25 15:01:26.377] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.meta'.
+[Thd 140205679761216 CPU 0 9/04/25 15:01:26.377] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.meta'.
+[Thd 140205679761216 CPU 0 9/04/25 15:01:26.444] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_t0.nidq.bin'.
+[Thd 140205679761216 CPU 0 9/04/25 15:03:00.186] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.bin'.
+[Thd 140205679761216 CPU 0 9/04/25 15:04:54.689] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_4/M25104_20250902_4_g1/M25104_20250902_4_g1_imec0/M25104_20250902_4_g1_t0.imec0.ap.bin'.
+[Thd 140205679761216 CPU 0 9/04/25 15:04:54.912] 
+[Thd 140167339726656 CPU 0 9/09/25 19:24:40.410] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_0 -run=M25104_20250902_0 -g=0,1 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_0 -out_prb_fld
+[Thd 140167339726656 CPU 0 9/09/25 19:24:40.413] Creating lf stream for probe 0.
+[Thd 140167339726656 CPU 0 9/09/25 19:24:40.419] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_0/M25104_20250902_0_g1/M25104_20250902_0_g1_t0.nidq.meta'.
+[Thd 140167339726656 CPU 0 9/09/25 19:24:40.419] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_0/M25104_20250902_0_g1/M25104_20250902_0_g1_imec0/M25104_20250902_0_g1_t0.imec0.ap.meta'.
+[Thd 140167339726656 CPU 0 9/09/25 19:24:40.419] Meta file not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_0/M25104_20250902_0_g1/M25104_20250902_0_g1_imec0/M25104_20250902_0_g1_t0.imec0.ap.meta'.
+[Thd 140167339726656 CPU 0 9/09/25 19:24:40.479] File not found '/home/saleem_lab/si_edd/temp_data/M25104/20250902/20250902_0/M25104_20250902_0_g1/M25104_20250902_0_g1_t0.nidq.bin'.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:00.402] Cmdline: CatGT -dir=/home/saleem_lab/si_edd/temp_data/M25104/20250909/20250909_0 -run=M25104_20250909_0 -g=0,6 -t=0 -prb_fld -prb_miss_ok -t_miss_ok -ni -ap -lf -prb=0 -zerofillmax=50 -lffilter=butter,12,0,500 -dest=/home/saleem_lab/si_edd/temp_data/M25104/20250909/20250909_0 -out_prb_fld
+[Thd 140585896531776 CPU 0 9/09/25 20:03:00.404] Creating lf stream for probe 0.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:00.821] Gap before file 'M25104_20250909_0_g1_t0.nidq.bin' out_start_smp=27588817 inp_gap_smp=383916 out_zeros_smp=529.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:00.822] Gap before file 'M25104_20250909_0_g2_t0.nidq.bin' out_start_smp=27634442 inp_gap_smp=96687 out_zeros_smp=529.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:00.909] Gap before file 'M25104_20250909_0_g3_t0.nidq.bin' out_start_smp=34704435 inp_gap_smp=273511 out_zeros_smp=529.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:00.994] Gap before file 'M25104_20250909_0_g4_t0.nidq.bin' out_start_smp=41794350 inp_gap_smp=1494712 out_zeros_smp=529.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:03.404] Gap before file 'M25104_20250909_0_g5_t0.nidq.bin' out_start_smp=69701076 inp_gap_smp=621788 out_zeros_smp=529.
+[Thd 140585896531776 CPU 0 9/09/25 20:03:04.198] Gap before file 'M25104_20250909_0_g6_t0.nidq.bin' out_start_smp=78116012 inp_gap_smp=118305 out_zeros_smp=529.
+[Thd 140585896531776 CPU 0 9/09/25 20:11:53.986] Gap before file 'M25104_20250909_0_g1_t0.imec0.ap.bin' out_start_smp=78131350 inp_gap_smp=1086916 out_zeros_smp=1500.
+[Thd 140585896531776 CPU 0 9/09/25 20:11:55.002] Gap before file 'M25104_20250909_0_g2_t0.imec0.ap.bin' out_start_smp=78260562 inp_gap_smp=273815 out_zeros_smp=1500.
+[Thd 140585896531776 CPU 0 9/09/25 20:14:08.337] Gap before file 'M25104_20250909_0_g3_t0.imec0.ap.bin' out_start_smp=98282739 inp_gap_smp=774498 out_zeros_smp=1500.
+[Thd 140585896531776 CPU 0 9/09/25 20:16:21.834] Gap before file 'M25104_20250909_0_g4_t0.imec0.ap.bin' out_start_smp=118361334 inp_gap_smp=4232915 out_zeros_smp=1500.
+[Thd 140585896531776 CPU 0 9/09/25 20:36:12.514] Gap before file 'M25104_20250909_0_g5_t0.imec0.ap.bin' out_start_smp=197393002 inp_gap_smp=1760572 out_zeros_smp=1500.
+[Thd 140585896531776 CPU 0 9/09/25 20:42:02.023] Gap before file 'M25104_20250909_0_g6_t0.imec0.ap.bin' out_start_smp=221224048 inp_gap_smp=334937 out_zeros_smp=1500.
+[Thd 140585896531776 CPU 0 9/09/25 21:03:19.931] Gap before file 'M25104_20250909_0_g1_t0.imec0.ap.bin' out_start_smp=6510945 inp_gap_smp=90577 out_zeros_smp=125
+[Thd 140585896531776 CPU 0 9/09/25 21:03:21.567] Gap before file 'M25104_20250909_0_g2_t0.imec0.ap.bin' out_start_smp=6521714 inp_gap_smp=22818 out_zeros_smp=125
+[Thd 140585896531776 CPU 0 9/09/25 21:07:24.160] Gap before file 'M25104_20250909_0_g3_t0.imec0.ap.bin' out_start_smp=8190229 inp_gap_smp=64542 out_zeros_smp=125
+[Thd 140585896531776 CPU 0 9/09/25 21:11:26.972] Gap before file 'M25104_20250909_0_g4_t0.imec0.ap.bin' out_start_smp=9863446 inp_gap_smp=352743 out_zeros_smp=125
+[Thd 140585896531776 CPU 0 9/09/25 21:26:53.271] Gap before file 'M25104_20250909_0_g5_t0.imec0.ap.bin' out_start_smp=16449418 inp_gap_smp=146714 out_zeros_smp=125
+[Thd 140585896531776 CPU 0 9/09/25 21:30:56.994] Gap before file 'M25104_20250909_0_g6_t0.imec0.ap.bin' out_start_smp=18435339 inp_gap_smp=27911 out_zeros_smp=125
+[Thd 140585896531776 CPU 0 9/09/25 21:33:51.881] 

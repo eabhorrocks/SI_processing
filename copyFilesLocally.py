@@ -20,6 +20,7 @@ use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
 server_path = sys.argv[8]
 # = '/mnt/rds01/ibn-vision/DATA/SUBJECTS/';
 
+
 print('Acquisition folders: ', dates)
 print('Mouse: ', mouse)
 
@@ -33,6 +34,7 @@ for date in dates:
     save_folder = local_folder + mouse + '/' + date + '/'
     print('copying ephys data from: ', ephys_folder, ' to: ', save_folder)
     copy_tree(ephys_folder, save_folder)
+    #shutil.copytree(ephys_folder, save_folder)
 
 print('Time to copy files to local folder: ')
 print(datetime.now() - startTime)

@@ -68,6 +68,7 @@ print(mouse)
 print('acquisition folder: ', dates)
 use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
+get_qm = sys.argv[8].lower() in ['true', '1', 't', 'y', 'yes']
 
 temp_save_folder = local_folder + mouse + "/"
 
@@ -95,7 +96,7 @@ for probe in range(int(no_probe)):
 
         print('Running kilosort 4 on probe ', probe)
         probe_sorting_ks4 = si.run_sorter(sorter_name='kilosort4', recording=probe_processed,
-                                           folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/')
+                                           folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/', verbose=True)
 
         probe_sorting_ks4 = si.remove_duplicated_spikes(sorting=probe_sorting_ks4, censored_period_ms=0.3,
                                                          method='keep_first')
@@ -106,6 +107,9 @@ for probe in range(int(no_probe)):
                                                    folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/metrics/',
                                                    sparse=True, overwrite=True,
                                                    **job_kwargs)
+        
+
+        # get quality metrics
         probe_we_ks4.compute('random_spikes')
         probe_we_ks4.compute('waveforms', ms_before=1.0, ms_after=2.0, **job_kwargs)
         probe_we_ks4.compute(extensions, **job_kwargs)
@@ -115,6 +119,7 @@ for probe in range(int(no_probe)):
         print('The following quality metrics are being computed:')
         print(qm_list)
         probe_we_ks4.compute('quality_metrics', qm_params=qm_list,**job_kwargs)
+            
         export_report(sorting_analyzer=probe_we_ks4, output_folder=save_folder +'probe'+str(probe)+'/sorters/kilosort4/report/')
 
         probe_ks4_spikes = np.load(

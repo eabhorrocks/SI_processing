@@ -50,6 +50,7 @@ for date in dates: # actually acquisitions, rather than dates
     print('Current acquisiton folder:', date)
     date_count = date_count + 1
     ephys_folder = save_folder + date
+    print(ephys_folder)
 
     # get g files for this acquisiton
     g_files = []
@@ -110,7 +111,8 @@ if nAcq == 1:  # get the output of catGT file and finish
     print(outDir)
 
     # if we're not running supercat we need to move some catGT files to a parent directory
-    sourceDir = outDir + '/' + mouse + '_' + tempDates[1] + '_g' + str(firstg) +'_imec0/'
+    sourceDir = outDir  + mouse + '_' + tempDates[1] + '_g' + str(firstg) +'_imec0/'
+    #sourceDir = outDir
     file_names = os.listdir(sourceDir)
     for file_name in file_names:
         #print(file_name)
@@ -194,7 +196,6 @@ cmdStr = pathToTPrimeRunit + " '" \
         + ' -events=7,' + catGTDir + '/' + mouse + '_' + tempDates[1] + '_g0' + '_tcat.nidq.xd_8_3_500.txt'\
         + ',' + nidq_output_path + 'nidq_sync_tprime.txt' \
         +  "'"
-
 
 TPrimeCommands.append(cmdStr)
 tprime_start_time = datetime.now()

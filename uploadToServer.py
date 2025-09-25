@@ -33,8 +33,19 @@ save_folder2=save_folder+save_date
 
 catGTDir = save_folder2 + '/CatGToutput/'
 
+# create a 'Processed_Acqindexes' string
+acquisition_indices = []
+for date in dates:
+    # Gets the last part of the path, e.g., '20250902_0'
+    run_part = date.split('/')[-1] 
+    index_number = run_part.split('_')[-1]
+    acquisition_indices.append(index_number)
+
+indices_part = "".join([f"_{index}" for index in acquisition_indices])
+processed_string = "/Processed" + indices_part
+
 # Copy files
-destDir = server_folder + mouse + '/ephys/' + save_date
+destDir = server_folder + mouse + '/ephys/' + save_date + processed_string
 nidqDir = save_folder2 + '/nidq_processed/'
 lfpDir = save_folder2 + '/lfp/'
 spikeSortingDir = save_folder2 + '/SpikeSorting/'
