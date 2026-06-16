@@ -3,14 +3,16 @@
 set -e # exit on error
 
 # Define variables
-mouse='M25104' #mouse id
-save_date='20250909' #date of recording
-dates='20250909/20250909_0' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
+mouse='M26015' #mouse id
+save_date='20260505' #date of recording
+dates='20260505/20260505_0' #,'20260421/M26015_20260421_1','20260421/M26015_20260421_2' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
 base_folder='/home/saleem_lab/si_edd/temp_data/'  
-# beast: '/home/lab/spikeinterface_sorting/temp_data/' GZ: 'home/saleem_lab/spikeinterface_sorting/temp_data/
-server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/' # should be same on both: '/mnt/rds01/ibn-vision/DATA/SUBJECTS/' GZ: 
+#beast: '/home/lab/spikeinterface_sorting/temp_data/' GZ: 'home/saleem_lab/spikeinterface_sorting/temp_data/
+
+server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/' #'/home/saleem_lab/rds01/ibn-vision/DATA/SUBJECTS/' # should be same on both: '/mnt/rds01/ibn-vision/DATA/SUBJECTS/' GZ: 
 #server_folder='/run/user/1011/gvfs/smb-share:server=rdp.arc.ucl.ac.uk,share=ritd-ag-project-rd01ie-asale69/ibn-vision/DATA/SUBJECTS/'
-server_folder='/home/saleem_lab/rds01/ibn-vision/DATA/SUBJECTS/'
+#server_folder='/home/saleem_lab/rds01/ibn-vision/DATA/SUBJECTS/'
+
 pathToCatGTRunit='/home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh' 
 # beast: '/home/lab/CatGT-linux/runit.sh', GZ: /home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh
 pathToTPrimeRunit='/home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh' 

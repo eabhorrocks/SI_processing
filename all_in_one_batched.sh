@@ -3,9 +3,9 @@
 set -e # exit on error
 
 # --- Main Configuration ---
-mouse='M25104' # mouse id
+mouse='M26017' # mouse id
 base_folder='/home/saleem_lab/si_edd/temp_data/'
-server_folder='/home/saleem_lab/rds01/ibn-vision/DATA/SUBJECTS/'
+server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
 no_probe=1 # number of probes
 use_ks4=true
 use_ks3=false
@@ -18,9 +18,14 @@ pathToTPrimeRunit='/home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh'
 # --- List of Dates and Sessions to Process ---
 # Add all the sessions you want to run to this list
 DATES_TO_PROCESS=(
-    "20250902/20250902_5"
-    "20250902/20250902_6"
-    "20250902/20250902_7"
+   # "20260604/20260604_0"
+    "20260604/20260604_1"
+    "20260604/20260604_2"
+    "20260604/20260604_3"
+    "20260604/20260604_4"
+    "20260604/20260604_5"
+    "20260604/20260604_6"
+    "20260604/20260604_7"
 )
 
 # --- Processing Loop ---
@@ -44,7 +49,7 @@ for dates in "${DATES_TO_PROCESS[@]}"; do
     python runCatGTandTPrime.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder $pathToCatGTRunit $pathToTPrimeRunit
 
     # Pre-processing
-    python preprocessProbes.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
+   python preprocessProbes.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
 
     # Run Spike Sorting
     python runSpikeSorting.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $get_qm
