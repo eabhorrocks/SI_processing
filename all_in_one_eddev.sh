@@ -22,6 +22,8 @@ no_probe=1 #number of probes you have in this session
 use_ks4=true #use kilosort4
 use_ks3=false #use kilosort3
 get_qm=true
+bad_channel_mode='auto' # auto, si_default, dead_out or none (see bad_channels.py)
+pca_metrics=false # true adds principal_components + PCA quality metrics (~1 h per session)
 
 # Copy files from server to local draive
 python copyFilesLocally.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder
@@ -31,9 +33,9 @@ python copyFilesLocally.py $mouse $dates $save_date $base_folder $no_probe $use_
 python runCatGTandTPrime.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder $pathToCatGTRunit $pathToTPrimeRunit
 
 #pre-processing as separate script
-python preprocessProbes.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
+python preprocessProbes.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $bad_channel_mode
 
-python runSpikeSorting.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $get_qm
+python runSpikeSorting.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $get_qm $pca_metrics
 
 #matlab -nosplash -nodisplay -nodesktop -r "mouse='${mouse}'; date='${save_date}'; base_folder='${base_folder}';no_probe='${no_probe}';dates='${dates}'; run('unit_match_merge_ks4_eddit2.m'); exit;"
 

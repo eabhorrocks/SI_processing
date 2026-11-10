@@ -23,6 +23,8 @@ import docker
 import itertools
 from spikeinterface.exporters import export_report
 
+from sorting_metrics import compute_analyzer_extensions
+
 
 import scipy.io as sio
 
@@ -69,6 +71,10 @@ print('acquisition folder: ', dates)
 use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
 get_qm = sys.argv[8].lower() in ['true', '1', 't', 'y', 'yes']
+# Optional 9th argument: also compute principal_components and the PCA-based quality
+# metrics (off by default, about an hour per session; see sorting_metrics.py).
+pca_metrics = len(sys.argv) > 9 and sys.argv[9].lower() in ['true', '1', 't', 'y', 'yes']
+print('pca metrics: ', pca_metrics)
 
 temp_save_folder = local_folder + mouse + "/"
 
@@ -76,7 +82,6 @@ temp_save_folder = local_folder + mouse + "/"
 parent_dir = temp_save_folder + save_date + '/'
 save_folder = temp_save_folder + save_date +'/SpikeSorting/'
 
-extensions = ['templates', 'template_metrics', 'noise_levels', 'template_similarity', 'correlograms', 'isi_histograms']
 job_kwargs = dict(n_jobs=32, chunk_duration='1s', progress_bar=True)
 
 for probe in range(int(no_probe)):
@@ -90,13 +95,17 @@ for probe in range(int(no_probe)):
     if use_ks4:
         # set params
         ks4params = si.get_default_sorter_params(sorter_name_or_class='kilosort4')
-        ks4params['do_CAR'] = False
+        ks4params['do_CAR'] = False  # preprocessProbes.py already applied a global median CAR
+        ks4params['clear_cache'] = True
 
         print("ks4 params: \n", ks4params)
 
+        # The params must be passed to run_sorter; before 2026-11 they were not, so KS4 ran
+        # with its defaults (do_CAR=True) whatever was set above.
         print('Running kilosort 4 on probe ', probe)
-        probe_sorting_ks4 = si.run_sorter(sorter_name='kilosort4', recording=probe_processed, clear_cache=True,
-                                           folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/', verbose=True)
+        probe_sorting_ks4 = si.run_sorter(sorter_name='kilosort4', recording=probe_processed,
+                                           folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort4/', verbose=True,
+                                           **ks4params)
 
         probe_sorting_ks4 = si.remove_duplicated_spikes(sorting=probe_sorting_ks4, censored_period_ms=0.3,
                                                          method='keep_first')
@@ -109,17 +118,9 @@ for probe in range(int(no_probe)):
                                                    **job_kwargs)
         
 
-        # get quality metrics
-        probe_we_ks4.compute('random_spikes')
-        probe_we_ks4.compute('waveforms', ms_before=1.0, ms_after=2.0, **job_kwargs)
-        probe_we_ks4.compute(extensions, **job_kwargs)
-        probe_we_ks4.compute('principal_components', **job_kwargs)
-        probe_we_ks4.compute('spike_amplitudes', **job_kwargs)
-        qm_list = si.get_default_qm_params()
-        print('The following quality metrics are being computed:')
-        print(qm_list)
-        probe_we_ks4.compute('quality_metrics', qm_params=qm_list,**job_kwargs)
-            
+        # waveforms, templates and quality metrics
+        compute_analyzer_extensions(probe_we_ks4, job_kwargs, pca_metrics=pca_metrics)
+
         export_report(sorting_analyzer=probe_we_ks4, output_folder=save_folder +'probe'+str(probe)+'/sorters/kilosort4/report/')
 
         probe_ks4_spikes = np.load(
@@ -129,12 +130,14 @@ for probe in range(int(no_probe)):
 
     if use_ks3:
         ks3params = si.get_default_sorter_params(sorter_name_or_class='kilosort3')
-        ks3params['do_CAR'] = False
+        ks3params['car'] = False  # SI's kilosort3 wrapper calls this 'car', not 'do_CAR'
 
+        print("ks3 params: \n", ks3params)
         print('Running kilosort 3 on probe ', probe)
         probe_sorting_ks3 = si.run_sorter(sorter_name= 'kilosort3',recording=probe_processed,
                                            folder=save_folder+'probe'+str(probe)+'/sorters/kilosort3/',
-                                           docker_image='spikeinterface/kilosort3-compiled-base:latest')
+                                           docker_image='spikeinterface/kilosort3-compiled-base:latest',
+                                           **ks3params)
 
         probe_sorting_ks3 = si.remove_duplicated_spikes(sorting=probe_sorting_ks3, censored_period_ms=0.3,
                                                          method='keep_first')
@@ -144,15 +147,7 @@ for probe in range(int(no_probe)):
                                                    folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort3/metrics/',
                                                    sparse=True, overwrite=True,
                                                    **job_kwargs)
-        probe_we_ks3.compute('random_spikes')
-        probe_we_ks3.compute('waveforms', ms_before=1.0, ms_after=2.0, **job_kwargs)
-        probe_we_ks3.compute(extensions, **job_kwargs)
-        probe_we_ks3.compute('principal_components', **job_kwargs)
-        probe_we_ks3.compute('spike_amplitudes', **job_kwargs)
-        qm_list = si.get_default_qm_params()
-        print('The following quality metrics are being computed:')
-        print(qm_list)
-        probe_we_ks3.compute('quality_metrics', qm_params=qm_list, **job_kwargs)
+        compute_analyzer_extensions(probe_we_ks3, job_kwargs, pca_metrics=pca_metrics)
         export_report(sorting_analyzer=probe_we_ks3,
                       output_folder=save_folder + 'probe' + str(probe) + '/sorters/kilosort3/report/')
 

@@ -20,8 +20,11 @@ import scipy.io as sio
 import sys
 
 import os
+import json
 import subprocess
 import pandas as pd
+
+from bad_channels import check_mode, select_bad_channels, summary as bad_channel_summary
 print("import time: ", datetime.now()-startTime)
 
 
@@ -48,6 +51,9 @@ local_folder = sys.argv[4]
 no_probe = sys.argv[5]
 use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
+# Optional 8th argument: bad channel mode (auto, si_default, dead_out, none). See bad_channels.py.
+bad_channel_mode = check_mode(sys.argv[8] if len(sys.argv) > 8 else 'auto')
+print('bad channel mode: ', bad_channel_mode)
 
 save_folder = local_folder + mouse + "/"
 
@@ -67,10 +73,11 @@ for probe in range(int(no_probe)):
     # highpass filter - threhsold at 300Hz
     probe_processed = si.highpass_filter(probe_raw, freq_min=300)
 
-    # detect and remove bad channels
-    bad_channel_ids, channel_labels = si.detect_bad_channels(probe_processed)
+    # detect and remove bad channels (the labels and decision are saved to bad_channels.json)
+    bad_channel_ids, bad_channel_report = select_bad_channels(probe_processed, mode=bad_channel_mode)
     probe_processed = probe_processed.remove_channels(bad_channel_ids)
-    print('probe_bad_channel_ids', bad_channel_ids)
+    print(bad_channel_summary(bad_channel_report))
+    print('probe_bad_channel_ids', list(bad_channel_ids))
 
     # phase shift correction - equivalent to T-SHIFT in catGT
     #probe_phase_shift = si.phase_shift(probe_bad_channels)
@@ -80,7 +87,11 @@ for probe in range(int(no_probe)):
     # print(probe0_preprocessed_corrected)
 
     # save pre-processed catenated file
-    probe_processed = probe_processed.save(folder=outputDir+'probe'+str(probe)+'_preprocessed', format='binary', **job_kwargs)
+    preprocessed_folder = outputDir + 'probe' + str(probe) + '_preprocessed'
+    probe_processed = probe_processed.save(folder=preprocessed_folder, format='binary', **job_kwargs)
+    # inside the preprocessed folder, so uploadToServer.py copies it with the recording's JSON
+    with open(os.path.join(preprocessed_folder, 'bad_channels.json'), 'w') as f:
+        json.dump(bad_channel_report, f, indent=2)
     #probe0_preprocessed_corrected = si.load_extractor(save_folder+'probe'+str(probe)+'_preprocessed')
 
 
