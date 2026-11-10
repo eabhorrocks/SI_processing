@@ -3,9 +3,9 @@
 set -e # exit on error
 
 # Define variables
-mouse='M26015' #mouse id
-save_date='20260505' #date of recording
-dates='20260505/20260505_0' #,'20260421/M26015_20260421_1','20260421/M26015_20260421_2' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
+mouse='M26018' #mouse id
+save_date='20260622' #date of recording
+dates='20260622/20260622_0' #'20260421/M26015_20260421_1','20260421/M26015_20260421_2' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
 base_folder='/home/saleem_lab/si_edd/temp_data/'  
 #beast: '/home/lab/spikeinterface_sorting/temp_data/' GZ: 'home/saleem_lab/spikeinterface_sorting/temp_data/
 

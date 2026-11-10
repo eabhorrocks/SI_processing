@@ -3,7 +3,7 @@
 set -e # exit on error
 
 # --- Main Configuration ---
-mouse='M26018' # mouse id
+mouse='M25120' # mouse id
 base_folder='/home/saleem_lab/si_edd/temp_data/'
 server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
 no_probe=1 # number of probes
@@ -18,10 +18,10 @@ pathToTPrimeRunit='/home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh'
 # --- List of Dates and Sessions to Process ---
 # Add all the sessions you want to run to this list
 DATES_TO_PROCESS=(
-    "20260616/20260616_0"
-    "20260616/20260616_1"
-    "20260616/20260616_2"
-    "20260616/20260616_3"
+    "20260624/20260624_0"
+    "20260624/20260624_1"
+    "20260624/20260624_2"
+    "20260624/20260624_3"
 )
 
 # --- Processing Loop ---
