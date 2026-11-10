@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e # exit on error
+# Print Python output as it happens, also when piped through tee
+export PYTHONUNBUFFERED=1
 
 # --- Main Configuration ---
 mouse='M26018' # mouse id
