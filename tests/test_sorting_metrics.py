@@ -34,6 +34,19 @@ def test_default_skips_pca(recording_and_sorting):
     assert analyzer.has_extension("template_metrics") and analyzer.has_extension("spike_amplitudes")
 
 
+def test_extensions_spikepost_needs(recording_and_sorting):
+    """spike_locations (and so the drift metrics) are computed while the recording exists,
+    and the parameters match spikepost's defaults so it does not recompute them."""
+    analyzer = compute_analyzer_extensions(_analyzer(recording_and_sorting), JOB_KWARGS)
+    assert analyzer.get_extension("spike_locations").params["method"] == "center_of_mass"
+    assert len(analyzer.get_extension("spike_locations").get_data()) == analyzer.sorting.count_total_num_spikes()
+    assert "drift_ptp" in analyzer.get_extension("quality_metrics").get_data().columns
+    for name in ("correlograms", "isi_histograms"):
+        params = analyzer.get_extension(name).params
+        assert (params["window_ms"], params["bin_ms"]) == (100.0, 1.0)
+    assert analyzer.get_extension("unit_locations").params["method"] == "monopolar_triangulation"
+
+
 def test_pca_metrics_on(recording_and_sorting):
     analyzer = compute_analyzer_extensions(_analyzer(recording_and_sorting), JOB_KWARGS, pca_metrics=True)
     assert analyzer.has_extension("principal_components")
