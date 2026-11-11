@@ -1,14 +1,19 @@
 #!/bin/bash
+# LFP-only batch: copy from the server, CatGT/TPrime, upload the LFP and NIDQ outputs, then
+# delete that session's local copy. Sessions from any number of mice; see all_in_one_batched.sh
+# and batch_lib.sh for the entry format. A session that fails stops at its first failing step;
+# its local files are moved to <base_folder>/_failed/ and the batch carries on. Failed sessions
+# are listed at the end.
 
 set -e # exit on error
 # Print Python output as it happens, also when piped through tee
 export PYTHONUNBUFFERED=1
+source "$(dirname "$0")/batch_lib.sh"
 
-# --- Main Configuration ---
-mouse='M25120' # mouse id
+# --- Main Configuration (defaults for every session) ---
 base_folder='/home/saleem_lab/si_edd/temp_data/'
 server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
-no_probe=1 # number of probes
+no_probe=1 # number of probes; override per session with probes=<n>
 use_ks4=true
 use_ks3=false
 get_qm=true
@@ -17,64 +22,56 @@ get_qm=true
 pathToCatGTRunit='/home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh'
 pathToTPrimeRunit='/home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh'
 
-# --- List of Dates and Sessions to Process ---
-# Add all the sessions you want to run to this list
-DATES_TO_PROCESS=(
-    "20260624/20260624_0"
-    "20260624/20260624_1"
-    "20260624/20260624_2"
-    "20260624/20260624_3"
+# --- Sessions to Process ---
+# One entry per session: "<mouse> <acquisitions> [probes=<n>]", e.g. "M25120 20260624/20260624_0".
+SESSIONS=(
+    "M25120 20260624/20260624_0"
+    "M25120 20260624/20260624_1"
+    "M25120 20260624/20260624_2"
+    "M25120 20260624/20260624_3"
 )
 
-# --- Processing Loop ---
-# This loop will iterate through each item in the DATES_TO_PROCESS array.
-for dates in "${DATES_TO_PROCESS[@]}"; do
-    
-    # Dynamically extract the save_date from the current session string
-    # This takes the part of the string before the '/'
-    save_date=${dates%%/*}
+# Check every entry before starting
+check_entries "${SESSIONS[@]}"
+echo "${#SESSIONS[@]} sessions to process:"
+printf '    %s\n' "${SESSIONS[@]}"
 
-    echo "----------------------------------------------------"
-    echo "Processing mouse: $mouse"
-    echo "Session       : $dates"
-    echo "Save date     : $save_date"
-    echo "----------------------------------------------------"
-
+# --- One session's steps (run_session stops at the first one that fails) ---
+lfp_session() {
     # Copy files from server to local drive
-    python copyFilesLocally.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder
+    python copyFilesLocally.py $mouse $dates $save_date $base_folder $session_probes $use_ks4 $use_ks3 $server_folder
 
     # Run CatGT and TPrime
-    python runCatGTandTPrime.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder $pathToCatGTRunit $pathToTPrimeRunit
+    python runCatGTandTPrime.py $mouse $dates $save_date $base_folder $session_probes $use_ks4 $use_ks3 $server_folder $pathToCatGTRunit $pathToTPrimeRunit
 
     # Pre-processing
-   #python preprocessProbes.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
+    #python preprocessProbes.py $mouse $dates $save_date $base_folder $session_probes $use_ks4 $use_ks3
 
     # Run Spike Sorting
-   # python runSpikeSorting.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $get_qm
-
-    # Run MATLAB script for unit matching
-    #matlab -nosplash -nodisplay -nodesktop -r "mouse='${mouse}'; date='${save_date}'; base_folder='${base_folder}';no_probe='${no_probe}';dates='${dates}'; run('unit_match_merge_ks4_eddit2.m'); exit;"
-
-    # Merge and calculate quality metrics
-    #python mergeAndCalculateQualityMetrics.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3
+    #python runSpikeSorting.py $mouse $dates $save_date $base_folder $session_probes $use_ks4 $use_ks3 $get_qm
 
     # Upload results to server
-    python uploadToServer_lfp.py $mouse $dates $save_date $base_folder $no_probe $use_ks4 $use_ks3 $server_folder
-    
-    DIR_TO_DELETE="/home/saleem_lab/si_edd/temp_data/$mouse"
-    if [ -d "$DIR_TO_DELETE" ]; then
-  	echo "Found directory: $DIR_TO_DELETE"
-  	echo "Deleting..."
-  
-  	# The deletion command
-  	rm -rf "$DIR_TO_DELETE"
-  
-    	echo "Directory deleted successfully."
-    else
-  	echo "Warning: Directory $DIR_TO_DELETE was not found."
-fi
+    python uploadToServer_lfp.py $mouse $dates $save_date $base_folder $session_probes $use_ks4 $use_ks3 $server_folder
+}
 
+# --- Processing Loop ---
+failed_sessions=()
+for entry in "${SESSIONS[@]}"; do
 
+    parse_entry "$entry"
+    session_start=$SECONDS
+
+    echo "----------------------------------------------------"
+    echo "Mouse         : $mouse"
+    echo "Session       : $dates"
+    echo "Save date     : $save_date"
+    echo "Probes        : $session_probes"
+    echo "----------------------------------------------------"
+
+    run_session lfp_session
+    # Delete this session's local copy only (not the rest of the mouse's folder), or move it
+    # aside if the session failed
+    finish_session
 done
 
-echo "--- All sessions processed successfully! ---"
+report_failures ${#SESSIONS[@]}
