@@ -6,6 +6,9 @@ import sys
 import shlex
 import shutil
 
+from catgt_checks import (check_catgt_output, check_raw_acquisition, check_tprime_output,
+                          stop_if_problems, wait_all)
+
 
 startTime = datetime.now()
 print('Running runCatGTandTPrime.py...')
@@ -24,6 +27,7 @@ print('Mouse: ',mouse)
 print('Acquisition folders: ',dates)
 #use_ks4 = sys.argv[6].lower() in ['true', '1', 't', 'y', 'yes']
 #use_ks3 = sys.argv[7].lower() in ['true', '1', 't', 'y', 'yes']
+server_folder = sys.argv[8]
 pathToCatGTRunit = sys.argv[9]
 pathToTPrimeRunit = sys.argv[10]
 #pathToCatGTRunit = '/home/lab/CatGT-linux/runit.sh'
@@ -45,12 +49,23 @@ else:
     catGTprobeStr='0'
 
 catGTcommands = []
+catGToutputDirs = []  # pass-1 output folder of each acquisition
+raw_problems = []
 
 for date in dates: # actually acquisitions, rather than dates
     print('Current acquisiton folder:', date)
     date_count = date_count + 1
     ephys_folder = save_folder + date
     print(ephys_folder)
+
+    # check the copied data before running CatGT, which silently skips missing probes
+    runName = mouse + '_' + date.split('/')[1]
+    problems = check_raw_acquisition(ephys_folder, runName, int(no_probe))
+    if problems:
+        raw_problems += problems
+        raw_problems.append('this is the local copy of ' + server_folder + mouse + '/ephys/' + date + '/; '
+                            'if the files are missing there too, the session was not fully uploaded')
+        continue
 
     # get g files for this acquisiton
     g_files = []
@@ -86,6 +101,11 @@ for date in dates: # actually acquisitions, rather than dates
              + ' -dest=' + ephys_folder + "'"
 
     catGTcommands.append(cmdStr)
+    catGToutputDirs.append(ephys_folder + '/catgt_' + runName + '_g' + str(firstg))
+
+stop_if_problems(raw_problems, 'the raw data for ' + mouse + ' is incomplete, so CatGT was not run:')
+
+catgt_log_hint = 'CatGT writes its errors to CatGT.log in ' + os.getcwd() + ', not to the console.'
 
 # run CatGT commands using subprocess and wait for them to finish
 print('Running CatGT...')
@@ -95,10 +115,11 @@ for cmd in catGTcommands:
     print(cmd)
 
 procs = [Popen(shlex.split(i)) for i in catGTcommands]
-for p in procs:
-    p.wait()
+wait_all(procs, 'CatGT')
 print('CatGT finished! Time taken: ', datetime.now() - catgt_start_time)
 print(' ')
+stop_if_problems([p for d in catGToutputDirs for p in check_catgt_output(d, int(no_probe))],
+                 'CatGT did not make the expected output:', catgt_log_hint)
 
 # check for multiple acquisitions and join using supercat if present
 nAcq = (len(dates))
@@ -143,8 +164,7 @@ if nAcq > 1:  # we also want to run supercat
     supercatCommands.append(cmdStr)
     supercat_start_time = datetime.now()
     procs = [Popen(shlex.split(i)) for i in supercatCommands]
-    for p in procs:
-        p.wait()
+    wait_all(procs, 'CatGT supercat')
     print('Supercat finished! Time taken: ', datetime.now() - supercat_start_time)
 
     # get diretory of final concatenated file
@@ -153,6 +173,8 @@ if nAcq > 1:  # we also want to run supercat
     print(' ')
     print('Final concatenated file: ')
     print(outDir)
+    stop_if_problems(check_catgt_output(outDir, int(no_probe)),
+                     'CatGT supercat did not make the expected output:', catgt_log_hint)
 
 
 catGTDir = save_folder + '/' + save_date + '/CatGToutput/'
@@ -200,10 +222,12 @@ cmdStr = pathToTPrimeRunit + " '" \
 TPrimeCommands.append(cmdStr)
 tprime_start_time = datetime.now()
 procs = [Popen(shlex.split(i)) for i in TPrimeCommands]
-for p in procs:
-    p.wait()
+wait_all(procs, 'TPrime')
 print("TPrime finshed! Time taken: ", datetime.now() - tprime_start_time)
 print(' ')
+stop_if_problems(check_tprime_output(nidq_output_path + 'nidq_sync_tprime.txt'),
+                 'TPrime did not write the NI sync file:',
+                 'TPrime writes its errors to TPrime.log in ' + os.getcwd() + ', not to the console.')
 
 # move nidq.bin and 'offsets' .txt files
 print("Moving the following nidq files: ")
