@@ -184,3 +184,124 @@ def test_set_aside_never_overwrites(tmp_path):
 def test_all_sessions_ok_report():
     out = run('failed_sessions=()\nreport_failures 2')
     assert out.returncode == 0 and "All 2 sessions processed successfully" in out.stdout
+
+
+# --- machine paths and CatGT/TPrime links ---
+
+CONFIG = LIB.parent / "machine_config.sh"
+
+
+def _copy_config(root: Path) -> Path:
+    repo = root / "si_edd" / "SI_processing"
+    repo.mkdir(parents=True)
+    shutil.copy(CONFIG, repo / "machine_config.sh")
+    return repo
+
+
+def _config(repo: Path) -> dict:
+    out = run(f"source '{_sh_path(repo / 'machine_config.sh')}'\n"
+              'echo "$base_folder|$server_folder|$pathToCatGTRunit|$pathToTPrimeRunit"')
+    assert out.returncode == 0, out.stderr
+    keys = ["base_folder", "server_folder", "catgt", "tprime"]
+    return dict(zip(keys, out.stdout.strip().split("|")))
+
+
+def _real(p: Path) -> str:
+    # what `pwd -P` prints for p (Git Bash gives /c/... on Windows)
+    out = subprocess.run([BASH, "-c", f"cd '{_sh_path(p)}' && pwd -P"], capture_output=True, text=True)
+    return out.stdout.strip()
+
+
+def test_machine_paths_follow_the_repo(tmp_path):
+    repo = _copy_config(tmp_path)
+    c = _config(repo)
+    root = _real(tmp_path / "si_edd")
+    assert c["base_folder"] == f"{root}/temp_data/"
+    assert c["server_folder"] == "/mnt/rds01/ibn-vision/DATA/SUBJECTS/"
+    assert c["catgt"] == f"{root}/SI_processing/CatGT-linux/runit.sh"
+    assert c["tprime"] == f"{root}/SI_processing/TPrime-linux/runit.sh"
+
+
+def test_machine_local_overrides(tmp_path):
+    repo = _copy_config(tmp_path)
+    (repo / "machine.local.sh").write_text("base_folder='/data/temp_data/'\n")
+    c = _config(repo)
+    assert c["base_folder"] == "/data/temp_data/"
+    assert c["catgt"].endswith("/SI_processing/CatGT-linux/runit.sh")
+
+
+def _fake_tool(dir: Path) -> Path:
+    """A tool folder whose install.sh links the loader like the real one and counts its runs."""
+    (dir / "libs").mkdir(parents=True)
+    (dir / "libs" / "ld-2.23.so").write_text("loader")
+    (dir / "install.sh").write_text(
+        "rm -rf links\nmkdir -p links\nln -s $PWD/libs/ld-2.23.so links/ld-linux-x86-64.so.2\n"
+        "echo x >> installs.txt\n", newline="\n")
+    return dir
+
+
+def _installs(dir: Path) -> int:
+    f = dir / "installs.txt"
+    return len(f.read_text().split()) if f.exists() else 0
+
+
+def _symlinks_work(tmp_path) -> bool:
+    probe = tmp_path / "symlink_probe"
+    probe.mkdir()
+    out = subprocess.run([BASH, "-c", f"cd '{_sh_path(probe)}' && touch a && ln -s \"$PWD/a\" b && test -L b"],
+                         capture_output=True)
+    return out.returncode == 0
+
+
+def test_missing_links_are_built(tmp_path):
+    tool = _fake_tool(tmp_path / "CatGT-linux")
+    out = run(f"ensure_tool_links '{_sh_path(tool)}'")
+    assert out.returncode == 0, out.stderr
+    assert _installs(tool) == 1 and (tool / "links" / "ld-linux-x86-64.so.2").exists()
+
+
+def test_links_from_another_machine_are_rebuilt(tmp_path):
+    """The clone carries links into the first machine's folder: dangling here, or (with both
+    folders on one machine) pointing at the other copy. Either way, install.sh runs once."""
+    if not _symlinks_work(tmp_path):
+        pytest.skip("this bash cannot make symlinks (Git Bash on Windows without developer mode)")
+    old = _fake_tool(tmp_path / "old" / "CatGT-linux")
+    new = _fake_tool(tmp_path / "new" / "CatGT-linux")
+    sh = lambda script: subprocess.run([BASH, "-c", script], capture_output=True, text=True)
+    # links into the other copy
+    assert sh(f"mkdir -p '{_sh_path(new)}/links' && ln -s '{_sh_path(old)}/libs/ld-2.23.so' "
+              f"'{_sh_path(new)}/links/ld-linux-x86-64.so.2'").returncode == 0
+    out = run(f"ensure_tool_links '{_sh_path(new)}'")
+    assert out.returncode == 0, out.stderr
+    assert _installs(new) == 1 and "Rebuilding CatGT-linux links" in out.stdout
+    # now correct: left alone
+    out = run(f"ensure_tool_links '{_sh_path(new)}'")
+    assert out.returncode == 0 and _installs(new) == 1 and out.stdout == ""
+    # dangling, as on a machine without the first machine's home folder
+    assert sh(f"rm -rf '{_sh_path(new)}/links' && mkdir '{_sh_path(new)}/links' && "
+              f"ln -s /home/nobody_here/CatGT-linux/libs/ld-2.23.so '{_sh_path(new)}/links/ld-linux-x86-64.so.2'").returncode == 0
+    out = run(f"ensure_tool_links '{_sh_path(new)}'")
+    assert out.returncode == 0, out.stderr
+    assert _installs(new) == 2
+
+
+def test_check_machine_reports_missing_server_and_tool(tmp_path):
+    tool = _fake_tool(tmp_path / "TPrime-linux")
+    (tool / "runit.sh").write_text("")
+    out = run("check_machine",
+              base_folder=tmp_path / "temp_data", server_folder=tmp_path / "not_mounted",
+              pathToCatGTRunit=tmp_path / "CatGT-linux" / "runit.sh", pathToTPrimeRunit=tool / "runit.sh")
+    assert out.returncode == 1
+    assert "is the server mounted?" in out.stderr and "CatGT-linux/runit.sh" in out.stderr
+    assert (tmp_path / "temp_data").is_dir() and _installs(tool) == 1
+
+
+def test_check_machine_ok(tmp_path):
+    tools = [_fake_tool(tmp_path / n) for n in ("CatGT-linux", "TPrime-linux")]
+    for t in tools:
+        (t / "runit.sh").write_text("")
+    (tmp_path / "server").mkdir()
+    out = run("check_machine", base_folder=tmp_path / "temp_data", server_folder=tmp_path / "server",
+              pathToCatGTRunit=tools[0] / "runit.sh", pathToTPrimeRunit=tools[1] / "runit.sh")
+    assert out.returncode == 0, out.stderr
+    assert "Local folder" in out.stdout

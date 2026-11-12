@@ -1,0 +1,6 @@
+# Made by install.sh with absolute paths for this machine; batch_lib.sh rebuilds them when missing
+CatGT-linux/links/
+TPrime-linux/links/
+
+# Per-machine path overrides (see machine_config.sh)
+machine.local.sh

@@ -11,16 +11,16 @@ export PYTHONUNBUFFERED=1
 source "$(dirname "$0")/batch_lib.sh"
 
 # --- Main Configuration (defaults for every session) ---
-base_folder='/home/saleem_lab/si_edd/temp_data/'
-server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/'
 no_probe=1 # number of probes; override per session with probes=<n>
 use_ks4=true
 use_ks3=false
 get_qm=true
 
-# --- Paths to Executables ---
-pathToCatGTRunit='/home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh'
-pathToTPrimeRunit='/home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh'
+# --- Machine paths ---
+# base_folder, server_folder and the CatGT/TPrime paths come from machine_config.sh, which
+# works them out from where this repo is (temp_data/ sits next to SI_processing/). To change
+# one on this machine only, set it in machine.local.sh (see machine_config.sh).
+source "$(dirname "$0")/machine_config.sh"
 
 # --- Sessions to Process ---
 # One entry per session: "<mouse> <acquisitions> [probes=<n>]", e.g. "M25120 20260624/20260624_0".
@@ -31,8 +31,9 @@ SESSIONS=(
     "M25120 20260624/20260624_3"
 )
 
-# Check every entry before starting
+# Check every entry, the paths and the CatGT/TPrime links before starting
 check_entries "${SESSIONS[@]}"
+check_machine
 echo "${#SESSIONS[@]} sessions to process:"
 printf '    %s\n' "${SESSIONS[@]}"
 

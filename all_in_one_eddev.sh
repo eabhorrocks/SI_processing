@@ -8,17 +8,12 @@ export PYTHONUNBUFFERED=1
 mouse='M26018' #mouse id
 save_date='20260622' #date of recording
 dates='20260622/20260622_0' #'20260421/M26015_20260421_1','20260421/M26015_20260421_2' #acquisition date and session e.g. dates='20240624/20240624_0,20240624/20240624_1'
-base_folder='/home/saleem_lab/si_edd/temp_data/'  
-#beast: '/home/lab/spikeinterface_sorting/temp_data/' GZ: 'home/saleem_lab/spikeinterface_sorting/temp_data/
-
-server_folder='/mnt/rds01/ibn-vision/DATA/SUBJECTS/' #'/home/saleem_lab/rds01/ibn-vision/DATA/SUBJECTS/' # should be same on both: '/mnt/rds01/ibn-vision/DATA/SUBJECTS/' GZ: 
-#server_folder='/run/user/1011/gvfs/smb-share:server=rdp.arc.ucl.ac.uk,share=ritd-ag-project-rd01ie-asale69/ibn-vision/DATA/SUBJECTS/'
-#server_folder='/home/saleem_lab/rds01/ibn-vision/DATA/SUBJECTS/'
-
-pathToCatGTRunit='/home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh' 
-# beast: '/home/lab/CatGT-linux/runit.sh', GZ: /home/saleem_lab/si_edd/SI_processing/CatGT-linux/runit.sh
-pathToTPrimeRunit='/home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh' 
-# beast: '/home/lab/TPrime-linux/runit.sh',  GZ: /home/saleem_lab/si_edd/SI_processing/TPrime-linux/runit.sh
+# base_folder, server_folder and the CatGT/TPrime paths come from machine_config.sh, which
+# works them out from where this repo is (temp_data/ sits next to SI_processing/). To change
+# one on this machine only, set it in machine.local.sh (see machine_config.sh).
+source "$(dirname "$0")/batch_lib.sh"
+source "$(dirname "$0")/machine_config.sh"
+check_machine
 
 no_probe=1 #number of probes you have in this session
 use_ks4=true #use kilosort4

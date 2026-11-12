@@ -10,6 +10,60 @@
 
 BAD_CHANNEL_MODES="auto si_default dead_out none"
 
+# ensure_tool_links <tool dir>: CatGT and TPrime run through links/, symlinks to their bundled
+# libs/ that install.sh makes with absolute paths. They break when the repo is cloned or copied
+# to another folder or machine (runit.sh then says ".../links/ld-linux-x86-64.so.2: not found"
+# and the tool does nothing). If any link is missing, broken, or points outside this tool's
+# folder, rerun install.sh there.
+ensure_tool_links() {
+    local dir link target ok=1
+    dir=$(cd -- "$1" && pwd -P) || return 1
+    if [[ ! -d $dir/links ]] || [[ ! -e $dir/links/ld-linux-x86-64.so.2 ]]; then
+        ok=0
+    else
+        while IFS= read -r link; do
+            target=$(readlink -f -- "$link") || target=""
+            if [[ ! -e $target || $target != "$dir"/libs/* ]]; then
+                ok=0
+                break
+            fi
+        done < <(find "$dir/links" -type l)
+    fi
+    (( ok )) && return 0
+    echo "Rebuilding $(basename -- "$dir") links for this folder ($dir/install.sh)"
+    (cd -- "$dir" && sh install.sh) || return 1
+    if [[ ! -e $dir/links/ld-linux-x86-64.so.2 ]]; then
+        echo "install.sh did not make $dir/links/ld-linux-x86-64.so.2" >&2
+        return 1
+    fi
+}
+
+# check_machine: before a batch, print this machine's paths (from machine_config.sh), check the
+# server is mounted and the local folder is usable, and repair the CatGT/TPrime links.
+check_machine() {
+    local runit bad=0
+    echo "Machine       : $(hostname)"
+    echo "Local folder  : $base_folder"
+    echo "Server folder : $server_folder"
+    if [[ ! -d $server_folder ]]; then
+        echo "Server folder $server_folder not found: is the server mounted? (set server_folder in machine.local.sh if it is somewhere else)" >&2
+        bad=1
+    fi
+    if ! mkdir -p -- "$base_folder"; then
+        echo "Cannot make the local folder $base_folder (set base_folder in machine.local.sh)" >&2
+        bad=1
+    fi
+    for runit in "$pathToCatGTRunit" "$pathToTPrimeRunit"; do
+        if [[ ! -f $runit ]]; then
+            echo "Not found: $runit" >&2
+            bad=1
+        elif ! ensure_tool_links "$(dirname -- "$runit")"; then
+            bad=1
+        fi
+    done
+    return $bad
+}
+
 # parse_entry "<entry>": set mouse, dates, save_date, session_probes and
 # session_bad_channel_mode, or print why the entry is malformed and return 1.
 parse_entry() {
